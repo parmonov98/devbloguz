@@ -93,11 +93,13 @@ class App extends Component {
                   <Fragment>
                     <Header  title={"DevBlog.UZ"} setAlert={this.setAlert} searchPosts={this.searchPosts} subtitle={"A Blog By Murod Parmonov"} image={'home-bg.jpg'}/>
                     <div className="container">
-                      <div className="row"> 
+                      <div className="row">
                         <ProgressBar loading={this.state.loading} />
                         <div className="col">
-                        <Alert alert={this.state.alert} />
+                          <Alert alert={this.state.alert} />
                         </div>
+                      </div>
+                      <div className="row">                         
                         <Posts {...this.state.match}  meta={this.state.meta} posts={this.state.posts} />
                       </div>
                     </div>
