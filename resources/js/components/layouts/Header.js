@@ -8,7 +8,10 @@ import Search from '../layouts/Search';
 
 const Header = ({image, title, subtitle, searchPosts, setAlert})  => {
   // let pageHeaderImage = images(`./${image}`);
-  // console.log(image);
+
+//   console.log(111);
+//   console.log(searchPosts);
+
   return (
     <header className="masthead" style={ {backgroundImage: `url(/assets/${image})` } }>
       <div className="overlay"></div>
@@ -23,7 +26,8 @@ const Header = ({image, title, subtitle, searchPosts, setAlert})  => {
         </div>
         <div className="row">
           <div className="col-md-8 mx-auto">
-            <Search setAlert={setAlert} searchPosts={searchPosts}/>
+            {searchPosts ? <Search setAlert={setAlert} searchPosts={searchPosts}/> : '' }
+
           </div>
         </div>
       </div>

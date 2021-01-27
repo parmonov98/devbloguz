@@ -1,13 +1,13 @@
-import React, { Fragment} from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-const PostItem = ({ id, title, description, author}) => {
+const PostItem = ({ id, title, slug, description, author}) => {
   let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   // let monthName = monthNames[monthNumber];
   return (
     <Fragment>
       <div className="post-preview" key={id}>
-          <Link to={`/post/${id}`}>
+          <Link to={`/post/${slug}`}>
             <h3 className="post-title">
               {title}
             </h3>

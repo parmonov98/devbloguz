@@ -31,5 +31,8 @@ Route::get('data', [APIController::class, 'getData']);
 
 Route::get('posts/search', [PostController::class, 'search']);
 
-Route::resource('posts', PostController::class);
+Route::get('post/{slug}', [PostController::class, 'slug']);
+// Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class, ['only' => [ 'index'] ]);
+
 Route::resource('users', UserController::class);

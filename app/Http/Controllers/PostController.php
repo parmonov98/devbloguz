@@ -63,7 +63,14 @@ class PostController extends Controller
     public function show(Post $post)
     {
         // dd($post);
+        echo 111; die;
         return ($post);
+    }
+    public function slug($slug)
+    {
+        // echo $slug; die;
+        return Post::firstWhere('slug', $slug)->get()->first();
+        // return ($post);
     }
 
     /**

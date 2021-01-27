@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 
 const Post = ({getPost, post}) => {
 
-    const {post_id} = useParams();
+    const {post_slug} = useParams();
     // console.log(post_id);
-    useEffect(() => getPost(post_id), []);
+    useEffect(() => getPost(post_slug), []);
 
     // console.log(post);
     return (

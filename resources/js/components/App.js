@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { BrowserRouter  as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter  as Router, Switch, Route, useParams} from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import './clean-blog.css';
 
@@ -33,10 +33,11 @@ const App = () => {
             twitter: "https://twitter.com/parmonov98",
             github: "https://github.com/parmonov98"
         }
-        );
+    );
     useEffect( () => {
-            console.log('mounted');
+        console.log('mounted');
             // console.log(child);
+
         (async() => {
             let requestData = (await fetch('/api/posts').catch(handleError));
             requestData = await requestData.json();
@@ -55,9 +56,6 @@ const App = () => {
         })();
 
     }, []);
-    // const match = useRouteMatch();
-    // const { params } = useParams();
-    // console.log(params);
 
 
 
@@ -70,18 +68,17 @@ const App = () => {
         }));
     };
 
-    const getPost = (post_id) => {
-        // console.log(post_id);
+    const getPost = (post_slug) => {
+        // console.log(post_slug);
         setLoading(true);
-        setTimeout( async () => {
-        // console.log(`http://127.0.0.1:8000/api/post/${post_id}`);
-            let requestData = await fetch(`/api/posts/${post_id}`);
+        (async() => {
+            let requestData = await fetch(`/api/post/${post_slug}`);
             requestData = await requestData.json();
             // console.log(requestData);
-            // this.setState({post: requestData, loading: false});
             setPost(requestData)
             setLoading(false);
-        }, 500);
+        })()
+
     }
 
     const sendMessage = async (formData) => {
@@ -103,12 +100,11 @@ const App = () => {
         // console.log(keywords);
         // this.setState( {posts: null, loading: true});
         setLoading(true);
-        setPosts([]);
         setTimeout( async () => {
         // console.log(`http://127.0.0.1:8000/api/post/${post_id}`);
             let requestData = await fetch(`/api/posts/search?q=${keywords}`);
             requestData = await requestData.json();
-            setPosts(requestData);
+            setPosts(requestData.data);
             setLoading(false);
         }, 500);
     }
@@ -163,7 +159,7 @@ const App = () => {
                 path="/about"
                 render={props => (
                     <Fragment>
-                    <Header title={"Murod Parmonov"} subtitle={"About @parmonov98"}  image={'about-bg.jpg'}/>
+                    <Header title={"Murod Parmonov"} subtitle={"About @parmonov98"}  image={'about-bg.jpg' }/>
                     <div className="container">
                         <div className="row">
                         <About/>
@@ -174,7 +170,7 @@ const App = () => {
                 } />
                 <Route
                 exact
-                path="/post/:post_id"
+                path="/post/:post_slug"
                 render={props => (
                     <Fragment>
                     <Header  title={post.title} subtitle={post.description} image={post.image}/>

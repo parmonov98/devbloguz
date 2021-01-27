@@ -5,12 +5,9 @@ import PostItem from './PostItem';
 
 const Posts = ({ posts, meta }) => {
 
-    // const {match} = useParams();
-    // console.log(match);
-//   console.log(posts, meta, match);
-  // console.log(props);
-  // console.log(meta.links[meta.current_page]);
-  return posts.length > 0 ? (
+//   console.log(posts, meta);
+
+  return posts.length > 0 && posts ? (
     <div className="col-lg-8 col-md-10 mx-auto">
       {posts.map((post, index) => {
           if(posts.length === index + 1) {
@@ -19,6 +16,7 @@ const Posts = ({ posts, meta }) => {
                   <PostItem
                     id={post.id}
                     title={post.title}
+                    slug={post.slug}
                     description={post.description.substring(0, 100)}
                     author={post.author}
                   />
@@ -34,6 +32,7 @@ const Posts = ({ posts, meta }) => {
             <PostItem
               key={post.id}
               id={post.id}
+              slug={post.slug}
               title={post.title}
               description={post.description.substring(0, 100)}
               author={post.author}
