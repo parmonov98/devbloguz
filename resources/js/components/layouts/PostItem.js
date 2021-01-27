@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react'
+import React, { Fragment} from 'react';
+import { Link } from 'react-router-dom';
 
 const PostItem = ({ id, title, description, author}) => {
   let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -6,16 +7,16 @@ const PostItem = ({ id, title, description, author}) => {
   return (
     <Fragment>
       <div className="post-preview" key={id}>
-          <a href={`/post/${id}`}>
+          <Link to={`/post/${id}`}>
             <h3 className="post-title">
               {title}
             </h3>
             <h3 className="post-subtitle">
               {description}
             </h3>
-          </a>
+          </Link>
           <p className="post-meta">Posted by
-            <a href={`/user/${author}`}> {author} </a>
+            <Link to={`/user/${author}`}> {author} </Link>
             on {monthNames[new Date().getMonth()]} {new Date().getDay()}, {new Date().getFullYear()}</p>
         </div>
         <hr/>

@@ -3,15 +3,17 @@ import {Link} from 'react-router-dom'
 
 import PostItem from './PostItem';
 
-const Posts = ({ posts, meta, match }) => {
+const Posts = ({ posts, meta }) => {
 
-  console.log(posts, meta, match);
+    // const {match} = useParams();
+    // console.log(match);
+//   console.log(posts, meta, match);
   // console.log(props);
   // console.log(meta.links[meta.current_page]);
-  return posts ? (
+  return posts.length > 0 ? (
     <div className="col-lg-8 col-md-10 mx-auto">
       {posts.map((post, index) => {
-          if(posts.length === index + 1) { 
+          if(posts.length === index + 1) {
             return  meta.links ? (
                 <Fragment key={post.id}>
                   <PostItem
@@ -20,7 +22,7 @@ const Posts = ({ posts, meta, match }) => {
                     description={post.description.substring(0, 100)}
                     author={post.author}
                   />
-                
+
                   {/* <div className="clearfix">
                     <a className="btn btn-primary float-right" href={`/?page=${meta.current_page}`}>Older Posts &rarr;</a>
                   </div> */}
@@ -42,7 +44,7 @@ const Posts = ({ posts, meta, match }) => {
       )}
 
     </div>
-  ) : ''
+  ) : 'No posts found'
 }
 
 export default Posts;

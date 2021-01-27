@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-export class Post extends Component {
+const Post = ({getPost, post}) => {
 
-  componentDidMount(){
-    // console.log(this.props.match.params.post_id);
-    // console.log(this.props, this.props.match);
-    this.props.getPost(this.props.match.params.post_id);
-  }
+    const {post_id} = useParams();
+    // console.log(post_id);
+    useEffect(() => getPost(post_id), []);
 
-  render() {
-    const {post} = this.props;
     // console.log(post);
     return (
       <article>
@@ -22,7 +19,7 @@ export class Post extends Component {
       </div>
     </article>
     )
-  }
+
 }
 
-export default Post
+export default Post;

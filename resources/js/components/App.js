@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { BrowserRouter  as Router, Switch, Route} from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import './clean-blog.css';
@@ -13,160 +13,226 @@ import About from './pages/About';
 import Alert from './/layouts/Alert';
 import Post from './pages/Post';
 import Contact from './pages/Contact';
+import Page404 from './pages/Page404';
 
 
 
-class App extends Component {
-  state = {
-    loading: true,
-    posts: [],
-    post: {},
-    links: {},
-    meta: {},
-    alert: null,
-    socials: {
-        facebook: "https://www.facebook.com/Parmonov98/",
-        twitter: "https://twitter.com/parmonov98",
-        github: "https://github.com/parmonov98"
+
+const App = () => {
+
+    const [loading, setLoading] = useState(true);
+    const [posts, setPosts] = useState([]);
+    const [post, setPost] = useState({});
+    const [links, setLinks] = useState({});
+    const [meta, setMeta] = useState({});
+    const [alert, setAlert] = useState(null);
+
+    const [socials, setsocials] = useState(
+        {
+            facebook: "https://www.facebook.com/Parmonov98/",
+            twitter: "https://twitter.com/parmonov98",
+            github: "https://github.com/parmonov98"
+        }
+        );
+    useEffect( () => {
+            console.log('mounted');
+            // console.log(child);
+        (async() => {
+            let requestData = (await fetch('/api/posts').catch(handleError));
+            requestData = await requestData.json();
+            // console.log(requestData);
+            if (!requestData.code) {
+                setPosts(requestData.data);
+                setMeta(requestData.meta);
+                setLinks(requestData.links);
+                setLoading(false);
+            }else{
+            //   this.setState({loading: false, alert: requestData});
+              setLoading(false);
+              setAlert(requestData);
+            }
+
+        })();
+
+    }, []);
+    // const match = useRouteMatch();
+    // const { params } = useParams();
+    // console.log(params);
+
+
+
+    const handleError = (err) => {
+        // console.warn(err);
+        return new Response(JSON.stringify({
+            code: 400,
+            message: "You're offline!",
+            type: 'warning'
+        }));
+    };
+
+    const getPost = (post_id) => {
+        // console.log(post_id);
+        setLoading(true);
+        setTimeout( async () => {
+        // console.log(`http://127.0.0.1:8000/api/post/${post_id}`);
+            let requestData = await fetch(`/api/posts/${post_id}`);
+            requestData = await requestData.json();
+            // console.log(requestData);
+            // this.setState({post: requestData, loading: false});
+            setPost(requestData)
+            setLoading(false);
+        }, 500);
     }
-  }
 
-  handleError = (err) => {
-    console.warn(err);
-    return new Response(JSON.stringify({
-        code: 400,
-        message: "You're offline!",
-        type: 'warning'
-    }));
-  };
-
-  async componentDidMount (){
-    let requestData = (await fetch('/api/posts').catch(this.handleError));
-    requestData = await requestData.json();
-    // console.log(requestData);
-    if (!requestData.code) {
-      this.setState({posts: requestData.data, meta: requestData.meta, links: requestData.links, loading: false});
-
-    }else{
-      this.setState({loading: false, alert: requestData});
+    const sendMessage = async (formData) => {
+        // console.log(post_id);
+        // console.log(formData);
+        let requestData = await fetch(`/api/contact`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(formData)
+        });
+        setLoading(false);
+        return requestData.json();
     }
-  }
 
-  getPost = (post_id) => {
-    // console.log(post_id);
-    this.setState({loading: true});
-    setTimeout( async () => {
-      // console.log(`http://127.0.0.1:8000/api/post/${post_id}`);
-      let requestData = await fetch(`/api/posts/${post_id}`);
-      requestData = await requestData.json();
-      // console.log(requestData);
-      this.setState({post: requestData, loading: false});
-    }, 500);
-  }
+    const searchPosts = (keywords) => {
+        // console.log(keywords);
+        // this.setState( {posts: null, loading: true});
+        setLoading(true);
+        setPosts([]);
+        setTimeout( async () => {
+        // console.log(`http://127.0.0.1:8000/api/post/${post_id}`);
+            let requestData = await fetch(`/api/posts/search?q=${keywords}`);
+            requestData = await requestData.json();
+            setPosts(requestData);
+            setLoading(false);
+        }, 500);
+    }
 
-  searchPosts = (keywords) => {
-    // console.log(keywords);
-    this.setState( {posts: null, loading: true});
-    setTimeout( async () => {
-      // console.log(`http://127.0.0.1:8000/api/post/${post_id}`);
-      let requestData = await fetch(`/api/posts/search?q=${keywords}`);
-      requestData = await requestData.json();
-      this.setState({posts: requestData.data, loading: false});
-    }, 500);
-  }
+    const showAlert = (alert) => {
 
-  setAlert = (alert) => {
+        setAlert(alert);
+        setTimeout(() => {
+            setAlert(null);
+        }, 5000);
+    }
 
-    this.setState({alert: alert});
-    setTimeout(() => {
-      this.setState({alert: null});
-    }, 5000);
-  }
 
-  render() {
     return (
-      <Router>
+        <Router>
 
-      <Fragment>
+        <Fragment>
         <Navbar title="DevBlog.Uz"></Navbar>
 
 
             <Switch>
-              <Route
+                <Route
                 exact
                 path="/"
                 render={props => (
-                  <Fragment>
-                    <Header  title={"DevBlog.UZ"} setAlert={this.setAlert} searchPosts={this.searchPosts} subtitle={"A Blog By Murod Parmonov"} image={'home-bg.jpg'}/>
+                    <Fragment>
+                    <Header
+                        title={"DevBlog.UZ"}
+                        setAlert={showAlert}
+                        searchPosts={searchPosts}
+                        subtitle={"A Blog By Murod Parmonov"}
+                        image={'home-bg.jpg'}
+                        />
                     <div className="container">
-                      <div className="row">
-                        <ProgressBar loading={this.state.loading} />
+                        <div className="row">
+                        <ProgressBar loading={loading} />
                         <div className="col">
-                          <Alert alert={this.state.alert} />
+                            <Alert alert={alert} />
                         </div>
-                      </div>
-                      <div className="row">
-                        <Posts {...this.state.match}  meta={this.state.meta} posts={this.state.posts} />
-                      </div>
+                        </div>
+                        <div className="row">
+                        <Posts  meta={meta} posts={posts} />
+                        </div>
                     </div>
 
-                  </Fragment>
+                    </Fragment>
                 )
                 } />
 
-              <Route
+                <Route
                 exact
                 path="/about"
                 render={props => (
-                  <Fragment>
+                    <Fragment>
                     <Header title={"Murod Parmonov"} subtitle={"About @parmonov98"}  image={'about-bg.jpg'}/>
                     <div className="container">
-                      <div className="row">
+                        <div className="row">
                         <About/>
-                      </div>
+                        </div>
                     </div>
-                  </Fragment>
+                    </Fragment>
                 )
                 } />
-              <Route
+                <Route
                 exact
                 path="/post/:post_id"
                 render={props => (
-                  <Fragment>
-                    <Header  title={this.state.post.title} subtitle={this.state.post.description} image={this.state.post.image}/>
+                    <Fragment>
+                    <Header  title={post.title} subtitle={post.description} image={post.image}/>
                     <div className="container">
-                      <div className="row">
-                        <Post {...props}  getPost={this.getPost} post={this.state.post} meta={this.state.meta} links={this.state.links} />
-                      </div>
+                        <div className="row">
+                        <Post {...props}  getPost={getPost} post={post} meta={meta} links={links} />
+                        </div>
                     </div>
-                  </Fragment>
+                    </Fragment>
                 )
                 } />
 
-              <Route
+                <Route
                 exact
                 path="/contact"
                 render={props => (
-                  <Fragment>
+                    <Fragment>
                     <Header title={"Contact @parmonov98"} subtitle={"Get in touch with Murod Parmonov"} image={'contact-bg.jpg'}/>
                     <div className="container">
-                      <div className="row">
-                        <Contact/>
-                      </div>
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Alert alert={alert} />
+                            </div>
+                        </div>
+                        <div className="row">
+                        <Contact sendMessage={sendMessage} showAlert={showAlert}/>
+                        </div>
                     </div>
-                  </Fragment>
+                    </Fragment>
+                )
+                } />
+                <Route
+                render={props => (
+                    <Fragment>
+                    <Header title={"404 Page"} subtitle={"Please, go to Home"} image={'404-page.jpg'}/>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Alert alert={alert} />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <Page404/>
+                        </div>
+                    </div>
+                    </Fragment>
                 )
                 } />
 
             </Switch>
 
-            <Footer socials={this.state.socials}/>
+        <Footer socials={socials}/>
 
 
-      </Fragment>
-      </Router>
+        </Fragment>
+        </Router>
     )
-  }
+
 }
 
 

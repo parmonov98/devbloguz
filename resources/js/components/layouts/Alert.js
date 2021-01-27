@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Alert = ({alert}) => {
-  
+
   return (
-    alert ? (
+    alert != null ? (
       <div className={`alert alert-dismissible fade show alert-${alert.type}`} role="alert">
         {alert.message}
         <button type="button" className="close" data-dismiss="alert" aria-label="Close">
