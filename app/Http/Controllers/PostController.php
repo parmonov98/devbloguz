@@ -63,14 +63,23 @@ class PostController extends Controller
     public function show(Post $post)
     {
         // dd($post);
-        echo 111; die;
+        echo 1; die;
         return ($post);
     }
     public function slug($slug)
     {
         // echo $slug; die;
-        return Post::firstWhere('slug', $slug)->get()->first();
-        // return ($post);
+        $post = Post::firstWhere('slug', $slug);
+        // print_r($post);
+        if ($post === null) {
+            return response()->json([
+                "success" => false,
+                "message" => "Resource not found",
+                "title" => "'" . $slug . "' DOES NOT EXIST!"
+            ]);
+        }else{
+            return ($post);
+        }
     }
 
     /**
