@@ -12,8 +12,8 @@ const Post = ({getPost, post}) => {
       <article>
       <div className="container">
         <div className="row">
-          <div className="col-lg-8 col-md-10 mx-auto">
-            {post.content}
+          <div className="col-lg-8 col-md-10 mx-auto" dangerouslySetInnerHTML={{__html: post.content}}>
+
           </div>
         </div>
       </div>
