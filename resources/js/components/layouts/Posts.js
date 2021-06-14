@@ -6,6 +6,7 @@ import PostItem from './PostItem';
 const Posts = ({ posts, meta, params, getPosts }) => {
 
 
+
     const [page_number, setPageNumber] = useState(1);
     const didMountRef = useRef(false);
     const url = window.location.pathname.split('/').pop();
@@ -25,11 +26,11 @@ const Posts = ({ posts, meta, params, getPosts }) => {
 
 
 
-    return posts.length > 0 && posts ? (
+    return posts && posts.length > 0 ? (
         <div className="col-lg-8 col-md-10 mx-auto">
             {posts.map((post, index) => {
                 if (posts.length === index + 1) {
-                    return meta.links ? (
+                    return meta && meta.links ? (
                         <Fragment key={post.id}>
                             <PostItem
                                 id={post.id}

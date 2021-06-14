@@ -22,8 +22,8 @@ const App = (props) => {
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
     const [post, setPost] = useState({});
-    const [links, setLinks] = useState({});
-    const [meta, setMeta] = useState({});
+    const [links, setLinks] = useState(null);
+    const [meta, setMeta] = useState(null);
     const [alert, setAlert] = useState(null);
 
     const [socials, setsocials] = useState(
@@ -38,9 +38,18 @@ const App = (props) => {
         let requestData = (await fetch(`/api/posts?page=${page}`).catch(handleError));
         requestData = await requestData.json();
         if (!requestData.code) {
+            console.log(requestData);
             setPosts(requestData.data);
-            setMeta(requestData.meta);
-            setLinks(requestData.links);
+            if (requestData.meta) {
+                setMeta(requestData.meta);
+            } else {
+                setMeta(null);
+            }
+            if (requestData.links) {
+                setLinks(requestData.links);
+            } else {
+                setLinks(null);
+            }
             setLoading(false);
         } else {
             //   this.setState({loading: false, alert: requestData});
@@ -87,15 +96,25 @@ const App = (props) => {
     }
 
     const searchPosts = (keywords) => {
-        // console.log(keywords);
-        // this.setState( {posts: null, loading: true});
         setLoading(true);
         setTimeout(async () => {
             // console.log(`http://127.0.0.1:8000/api/post/${post_id}`);
             let requestData = await fetch(`/api/posts/search?q=${keywords}`);
             requestData = await requestData.json();
+            // console.log(requestData);
             setPosts(requestData.data);
+            if (requestData.meta) {
+                setMeta(requestData.meta);
+            } else {
+                setMeta(null);
+            }
+            if (requestData.links) {
+                setLinks(requestData.links);
+            } else {
+                setLinks(null);
+            }
             setLoading(false);
+
         }, 500);
     }
 
