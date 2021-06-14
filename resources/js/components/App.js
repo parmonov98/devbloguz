@@ -162,7 +162,7 @@ const App = (props) => {
                                             <Alert alert={alert} />
                                         </div>
                                     </div>
-                                    <div className="row">
+                                    <div className="row justify-content-center">
                                         <Posts meta={meta} posts={posts} params={props.match.params} getPosts={getPosts} />
                                     </div>
                                     <div className="row">
