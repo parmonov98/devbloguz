@@ -165,7 +165,7 @@ const App = (props) => {
                                     <div className="row justify-content-center">
                                         <Posts meta={meta} posts={posts} params={props.match.params} getPosts={getPosts} />
                                     </div>
-                                    <div className="row">
+                                    <div className="row justify-content-center">
                                         {posts.length > 0 ? <PostsPagination meta={meta} links={links} /> : "no posts"}
                                     </div>
                                 </div>
