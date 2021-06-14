@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+<p align="center"><a href="https://laravel.com" target="_blank">
+<img src="https://user-images.githubusercontent.com/24564577/105930980-38c37480-606c-11eb-8aa4-02b66e05bd64.png" width="400"></a></p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About DevBlog.UZ
 
-## Available Scripts
+DevBlog.UZ is a blog run by Murod Parmonov AKA [@parmonov98](https://parmonov98.uz). Here, I talk about things, such as:
 
-In the project directory, you can run:
+- PHP.
+- JS(JavaScript)
+- ReactJS
+- NODEJS
+- MYSQL.
+- Laravel.
+- Telegram BOTs and other platforms too.
+- and more about web and android Development.
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Recomendation
+    This blog is a place where you can take something useful, that's why you can subscribe to mailing news.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+If you don't feel like a good reader, then you can check out my videocasts on my youtube channel.
 
-### `yarn test`
+### My socials
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **[GitHub](https://github.com/parmonov98)**
+- **[Twitter](https://twitter.com/parmonov98)**
+- **[FaceBook](https://facebook.com/parmonov98)**
+- **[Instagram](https://instagram.com/murodparmonov)**
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contributing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Code of Conduct
 
-### `yarn eject`
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Security Vulnerabilities
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you discover a security vulnerability within the app, please send an Telegram to Murod Parmonov via [@parmonov98](https://t.me/parmonov98). 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## License
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+BYW, this is the source code of devblog.uz, you are free to use in any purposes. 
+It is based on ReactJS and Laravel, and they are open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
