@@ -10,13 +10,9 @@ const Posts = ({ posts, meta, params, getPosts }) => {
     const didMountRef = useRef(false);
     const url = window.location.pathname.split('/').pop();
 
-    // console.log(params.page_number);
-
-
     useEffect(() => {
         console.log(page_number);
         if (parseInt(params.page_number) !== page_number) {
-            // alert(params.page_number);
             setPageNumber(params.page_number);
             getPosts(parseInt(params.page_number));
         } else {

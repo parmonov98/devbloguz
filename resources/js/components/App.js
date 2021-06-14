@@ -35,10 +35,8 @@ const App = (props) => {
     );
 
     const getPosts = async (page) => {
-        console.log(page);
         let requestData = (await fetch(`/api/posts?page=${page}`).catch(handleError));
         requestData = await requestData.json();
-        console.log(requestData);
         if (!requestData.code) {
             setPosts(requestData.data);
             setMeta(requestData.meta);
