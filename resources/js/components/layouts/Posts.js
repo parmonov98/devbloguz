@@ -5,8 +5,6 @@ import PostItem from './PostItem';
 
 const Posts = ({ posts, meta, params, getPosts }) => {
 
-
-
     const [page_number, setPageNumber] = useState(1);
     const didMountRef = useRef(false);
     const url = window.location.pathname.split('/').pop();

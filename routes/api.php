@@ -43,6 +43,7 @@ Route::prefix('auth')->group(function () {
 Route::get('posts/search', [PostController::class, 'search']);
 
 Route::get('post/{slug}', [PostController::class, 'slug']);
+Route::get('user/{username}', [UserController::class, 'getByUsername']);
 // Route::resource('posts', PostController::class);
 Route::resource('posts', PostController::class, ['only' => ['index']]);
 

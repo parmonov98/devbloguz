@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Search from '../layouts/Search';
+import { CustomContext } from '../../contexts/CustomContext';
+
 // import BackgroundImage from '../../../public/assets/home-bg.jpg';
 // const images = require.context("../../../public/assets", true);
 
@@ -9,8 +11,14 @@ import Search from '../layouts/Search';
 const Header = ({ image, title, subtitle, searchPosts, setAlert }) => {
     // let pageHeaderImage = images(`./${image}`);
 
-    //   console.log(111);
-    //   console.log(searchPosts);
+
+    const context = useContext(CustomContext);
+    const { activeLanguage } = context;
+
+    let ui = activeLanguage;
+    ui = context.texts[activeLanguage];
+
+    subtitle = ui.app_title;
 
     return (
         <header className="masthead" style={{ backgroundImage: `url(/assets/${image})` }}>

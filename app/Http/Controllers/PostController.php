@@ -24,12 +24,9 @@ class PostController extends Controller
     {
         // $posts = Post::orderBy('created_at', 'desc')->paginate(6);
         $posts = Post::query()
-        ->where('title', 'LIKE', "%{$request->q}%")
-        ->orWhere('description', 'LIKE', "%{$request->q}%")
-        ->get();
-
-        // print_r($posts);
-
+            ->where('title', 'LIKE', "%{$request->q}%")
+            ->orWhere('description', 'LIKE', "%{$request->q}%")
+            ->get();
         return PostResource::collection($posts);
     }
 
@@ -63,7 +60,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         // dd($post);
-        echo 1; die;
+        echo 1;
+        die;
         return ($post);
     }
     public function slug($slug)
@@ -77,7 +75,7 @@ class PostController extends Controller
                 "message" => "Resource not found",
                 "title" => "'" . $slug . "' DOES NOT EXIST!"
             ]);
-        }else{
+        } else {
             return ($post);
         }
     }

@@ -1,5 +1,6 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
+import CustomContextProvider from './../contexts/CustomContext'
 // import PropTypes from 'prop-types';
 import './clean-blog.css';
 
@@ -13,6 +14,7 @@ import Posts from './layouts/Posts';
 import About from './pages/About';
 import Alert from './/layouts/Alert';
 import Post from './pages/Post';
+import User from './pages/User';
 import Contact from './pages/Contact';
 import Page404 from './pages/Page404';
 
@@ -22,9 +24,11 @@ const App = (props) => {
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
     const [post, setPost] = useState({});
+    const [user, setUser] = useState({});
     const [links, setLinks] = useState(null);
     const [meta, setMeta] = useState(null);
     const [alert, setAlert] = useState(null);
+
 
     const [socials, setsocials] = useState(
         {
@@ -79,6 +83,17 @@ const App = (props) => {
         })()
 
     }
+    const getUser = (username) => {
+        setLoading(true);
+        (async () => {
+            let requestData = await fetch(`/api/user/${username}`);
+            requestData = await requestData.json();
+            // console.log(requestData);
+            setUser(requestData.data);
+            setLoading(false);
+        })()
+
+    }
 
     const sendMessage = async (formData) => {
         // console.log(post_id);
@@ -127,141 +142,159 @@ const App = (props) => {
     }
 
 
+
     return (
         <Router>
 
             <Fragment>
-                <Navbar title="DevBlog.Uz"></Navbar>
-                <Switch>
-                    <Route
-                        exact
-                        path="/"
-                        render={props => (
-                            <Fragment>
-                                <Header
-                                    title={"DevBlog.UZ"}
-                                    setAlert={showAlert}
-                                    searchPosts={searchPosts}
-                                    subtitle={"A Blog By Murod Parmonov"}
-                                    image={'home-bg.jpg'}
-                                />
-                                <div className="container">
-                                    <div className="row">
-                                        <ProgressBar loading={loading} />
-                                        <div className="col">
-                                            <Alert alert={alert} />
+                <CustomContextProvider>
+
+                    <Navbar title="DevBlog.Uz"></Navbar>
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            render={props => (
+                                <Fragment>
+                                    <Header
+                                        title={"DevBlog.UZ"}
+                                        setAlert={showAlert}
+                                        searchPosts={searchPosts}
+                                        subtitle={"A Blog By Murod Parmonov"}
+                                        image={'home-bg.jpg'}
+                                    />
+                                    <div className="container">
+                                        <div className="row">
+                                            <ProgressBar loading={loading} />
+                                            <div className="col">
+                                                <Alert alert={alert} />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <Posts meta={meta} posts={posts} params={props.match.params} getPosts={getPosts} />
+                                        </div>
+                                        <div className="row justify-content-center">
+                                            {posts.length > 0 ? <PostsPagination meta={meta} links={links} /> : "no posts"}
                                         </div>
                                     </div>
-                                    <div className="row">
-                                        <Posts meta={meta} posts={posts} params={props.match.params} getPosts={getPosts} />
-                                    </div>
-                                    <div className="row justify-content-center">
-                                        {posts.length > 0 ? <PostsPagination meta={meta} links={links} /> : "no posts"}
-                                    </div>
-                                </div>
 
-                            </Fragment>
-                        )
-                        } />
-                    <Route
-                        path={["/page/:page_number",]}
-                        render={props => (
-                            <Fragment>
-                                <Header
-                                    title={"DevBlog.UZ"}
-                                    setAlert={showAlert}
-                                    searchPosts={searchPosts}
-                                    subtitle={"A Blog By Murod Parmonov"}
-                                    image={'home-bg.jpg'}
-                                />
-                                <div className="container">
-                                    <div className="row">
-                                        <ProgressBar loading={loading} />
-                                        <div className="col">
-                                            <Alert alert={alert} />
+                                </Fragment>
+                            )
+                            } />
+                        <Route
+                            path={["/page/:page_number",]}
+                            render={props => (
+                                <Fragment>
+                                    <Header
+                                        title={"DevBlog.UZ"}
+                                        setAlert={showAlert}
+                                        searchPosts={searchPosts}
+                                        subtitle={"A Blog By Murod Parmonov"}
+                                        image={'home-bg.jpg'}
+                                    />
+                                    <div className="container">
+                                        <div className="row">
+                                            <ProgressBar loading={loading} />
+                                            <div className="col">
+                                                <Alert alert={alert} />
+                                            </div>
+                                        </div>
+                                        <div className="row justify-content-center">
+                                            <Posts meta={meta} posts={posts} params={props.match.params} getPosts={getPosts} />
+                                        </div>
+                                        <div className="row justify-content-center">
+                                            {posts.length > 0 ? <PostsPagination meta={meta} links={links} /> : "no posts"}
                                         </div>
                                     </div>
-                                    <div className="row justify-content-center">
-                                        <Posts meta={meta} posts={posts} params={props.match.params} getPosts={getPosts} />
-                                    </div>
-                                    <div className="row justify-content-center">
-                                        {posts.length > 0 ? <PostsPagination meta={meta} links={links} /> : "no posts"}
-                                    </div>
-                                </div>
 
-                            </Fragment>
-                        )
-                        } />
-
-                    <Route
-                        exact
-                        path="/about"
-                        render={props => (
-                            <Fragment>
-                                <Header title={"Murod Parmonov"} subtitle={"About @parmonov98"} image={'about-bg.jpg'} />
-                                <div className="container">
-                                    <div className="row">
-                                        <About />
-                                    </div>
-                                </div>
-                            </Fragment>
-                        )
-                        } />
-                    <Route
-                        exact
-                        path="/post/:post_slug"
-                        render={props => (
-                            <Fragment>
-                                <Header title={post.title} subtitle={post.description} image={post.image} />
-                                <div className="container">
-                                    <div className="row">
-                                        <Post {...props} getPost={getPost} post={post} meta={meta} links={links} />
-                                    </div>
-                                </div>
-                            </Fragment>
-                        )
-                        } />
-
-                    <Route
-                        exact
-                        path="/contact"
-                        render={props => (
-                            <Fragment>
-                                <Header title={"Contact @parmonov98"} subtitle={"Get in touch with Murod Parmonov"} image={'contact-bg.jpg'} />
-                                <div className="container">
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <Alert alert={alert} />
+                                </Fragment>
+                            )
+                            } />
+                        <Route
+                            exact
+                            path="/user/:username"
+                            render={props => (
+                                <Fragment>
+                                    <Header title={post.title} subtitle={post.description} image={post.image} />
+                                    <div className="container">
+                                        <div className="row">
+                                            <User {...props} getUser={getUser} user={user} />
                                         </div>
                                     </div>
-                                    <div className="row">
-                                        <Contact sendMessage={sendMessage} showAlert={showAlert} />
-                                    </div>
-                                </div>
-                            </Fragment>
-                        )
-                        } />
-                    <Route
-                        render={props => (
-                            <Fragment>
-                                <Header title={"404 Page"} subtitle={"Please, go to Home"} image={'404-page.jpg'} />
-                                <div className="container">
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <Alert alert={alert} />
+                                </Fragment>
+                            )
+                            } />
+
+                        <Route
+                            exact
+                            path="/about"
+                            render={props => (
+                                <Fragment>
+                                    <Header title={"Murod Parmonov"} subtitle={"About @parmonov98"} image={'about-bg.jpg'} />
+                                    <div className="container">
+                                        <div className="row">
+                                            <About />
                                         </div>
                                     </div>
-                                    <div className="row">
-                                        <Page404 />
+                                </Fragment>
+                            )
+                            } />
+                        <Route
+                            exact
+                            path="/post/:post_slug"
+                            render={props => (
+                                <Fragment>
+                                    <Header title={post.title} subtitle={post.description} image={post.image} />
+                                    <div className="container">
+                                        <div className="row">
+                                            <Post {...props} getPost={getPost} post={post} meta={meta} links={links} />
+                                        </div>
                                     </div>
-                                </div>
-                            </Fragment>
-                        )
-                        } />
+                                </Fragment>
+                            )
+                            } />
 
-                </Switch>
+                        <Route
+                            exact
+                            path="/contact"
+                            render={props => (
+                                <Fragment>
+                                    <Header title={"Contact @parmonov98"} subtitle={"Get in touch with Murod Parmonov"} image={'contact-bg.jpg'} />
+                                    <div className="container">
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <Alert alert={alert} />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <Contact sendMessage={sendMessage} showAlert={showAlert} />
+                                        </div>
+                                    </div>
+                                </Fragment>
+                            )
+                            } />
+                        <Route
+                            render={props => (
+                                <Fragment>
+                                    <Header title={"404 Page"} subtitle={"Please, go to Home"} image={'404-page.jpg'} />
+                                    <div className="container">
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <Alert alert={alert} />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <Page404 />
+                                        </div>
+                                    </div>
+                                </Fragment>
+                            )
+                            } />
 
-                <Footer socials={socials} />
+                    </Switch>
+
+                    <Footer socials={socials} />
+                </CustomContextProvider>
 
 
             </Fragment>

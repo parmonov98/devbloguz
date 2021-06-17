@@ -1,17 +1,24 @@
-import { React } from 'react';
+import { React, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom'
+import { CustomContext } from './../../contexts/CustomContext';
 
 const PostsPagination = (props) => {
 
+    const context = useContext(CustomContext);
+    const { activeLanguage } = context;
+
+    let ui = activeLanguage;
+    ui = context.texts[activeLanguage];
+
     const { links, meta } = props;
-    // console.log(links, meta);
+
 
     return (
         links != null && meta != null ? (
             <nav aria-label="Page navigation example">
                 <ul className="pagination justify-content-center" >
                     <li key={"prev"} className={`page-item ${meta.current_page == 1 ? "disabled" : ''}`}>
-                        <Link className="page-link" to={`/page/${meta.current_page == 1 ? "" : meta.current_page - 1}`}>Previous</Link>
+                        <Link className="page-link" to={`/page/${meta.current_page == 1 ? "" : meta.current_page - 1}`}>{ui.prev_page_button}</Link>
                     </li>
 
                     {
@@ -24,11 +31,11 @@ const PostsPagination = (props) => {
                         }())
                     }
                     <li key={"next"} className={`page-item ${meta.current_page == meta.last_page ? "disabled" : ''}`} >
-                        <Link className="page-link" to={`/page/${meta.current_page + 1}`}>Next</Link>
+                        <Link className="page-link" to={`/page/${meta.current_page + 1}`}>{ui.next_page_button}</Link>
                     </li>
                 </ul>
             </nav>
-        ) : "------"
+        ) : ""
     )
 }
 
