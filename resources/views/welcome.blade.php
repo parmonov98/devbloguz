@@ -64,11 +64,6 @@
       margin-bottom: 30px;
     }
 
-    .btn-secondary {
-      background-color: transparent !important;
-      border-color: transparent !important;
-    }
-
   </style>
 </head>
 <body>

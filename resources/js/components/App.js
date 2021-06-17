@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
 import CustomContextProvider from './../contexts/CustomContext'
 // import PropTypes from 'prop-types';
-import './clean-blog.css';
+import './pages/clean-blog.css';
 
 import Navbar from './layouts/Navbar';
 import Header from './layouts/Header';
@@ -110,27 +110,24 @@ const App = (props) => {
         return requestData.json();
     }
 
-    const searchPosts = (keywords) => {
-        setLoading(true);
-        setTimeout(async () => {
-            // console.log(`http://127.0.0.1:8000/api/post/${post_id}`);
-            let requestData = await fetch(`/api/posts/search?q=${keywords}`);
-            requestData = await requestData.json();
-            // console.log(requestData);
-            setPosts(requestData.data);
-            if (requestData.meta) {
-                setMeta(requestData.meta);
-            } else {
-                setMeta(null);
-            }
-            if (requestData.links) {
-                setLinks(requestData.links);
-            } else {
-                setLinks(null);
-            }
-            setLoading(false);
+    const searchPosts = async (keywords) => {
 
-        }, 500);
+        let requestData = await fetch(`/api/posts/search?q=${keywords}`);
+        requestData = await requestData.json();
+
+        // console.log(requestData);
+        setPosts(requestData.data);
+        if (requestData.meta) {
+            setMeta(requestData.meta);
+        } else {
+            setMeta(null);
+        }
+        if (requestData.links) {
+            setLinks(requestData.links);
+        } else {
+            setLinks(null);
+        }
+
     }
 
     const showAlert = (alert) => {

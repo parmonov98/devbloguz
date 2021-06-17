@@ -10,7 +10,7 @@ const LanguageToggle = () => {
     lang = context.languages.find((item) => item.name == activeLanguage);
 
     return (
-        <div className="dropdown" >
+        <div className="dropdown language_dropdown collapes" id="languageDropdown">
             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {lang.flag}  {lang.title}
             </button>

@@ -2034,7 +2034,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../contexts/CustomContext */ "./resources/js/contexts/CustomContext.js");
-/* harmony import */ var _clean_blog_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./clean-blog.css */ "./resources/js/components/clean-blog.css");
+/* harmony import */ var _pages_clean_blog_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/clean-blog.css */ "./resources/js/components/pages/clean-blog.css");
 /* harmony import */ var _layouts_Navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./layouts/Navbar */ "./resources/js/components/layouts/Navbar.js");
 /* harmony import */ var _layouts_Header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./layouts/Header */ "./resources/js/components/layouts/Header.js");
 /* harmony import */ var _layouts_ProgressBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./layouts/ProgressBar */ "./resources/js/components/layouts/ProgressBar.js");
@@ -2301,9 +2301,8 @@ var App = function App(props) {
     };
   }();
 
-  var searchPosts = function searchPosts(keywords) {
-    setLoading(true);
-    setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+  var searchPosts = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(keywords) {
       var requestData;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
         while (1) {
@@ -2334,16 +2333,18 @@ var App = function App(props) {
                 setLinks(null);
               }
 
-              setLoading(false);
-
-            case 10:
+            case 9:
             case "end":
               return _context5.stop();
           }
         }
       }, _callee5);
-    })), 500);
-  };
+    }));
+
+    return function searchPosts(_x3) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
 
   var showAlert = function showAlert(alert) {
     setAlert(alert);
@@ -2583,22 +2584,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var Alert = function Alert(_ref) {
   var alert = _ref.alert;
-  return alert != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  return alert != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "alert alert-dismissible fade show alert-".concat(alert.type),
     role: "alert",
-    children: [alert.message, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      type: "button",
-      className: "close",
-      "data-dismiss": "alert",
-      "aria-label": "Close",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-        "aria-hidden": "true",
-        children: "\xD7"
-      })
-    })]
+    children: alert.message
   }) : '';
 };
 
@@ -2707,9 +2698,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _layouts_Search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layouts/Search */ "./resources/js/components/layouts/Search.js");
 /* harmony import */ var _contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../contexts/CustomContext */ "./resources/js/contexts/CustomContext.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
  // import BackgroundImage from '../../../public/assets/home-bg.jpg';
@@ -2726,11 +2719,33 @@ var Header = function Header(_ref) {
       searchPosts = _ref.searchPosts,
       setAlert = _ref.setAlert;
   // let pageHeaderImage = images(`./${image}`);
+  var url = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLocation)();
   var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__.CustomContext);
   var activeLanguage = context.activeLanguage;
   var ui = activeLanguage;
   ui = context.texts[activeLanguage];
-  subtitle = ui.app_title;
+
+  if (url.pathname == '/') {
+    subtitle = ui.app_title;
+  }
+
+  if (url.pathname == '/contact') {
+    var page = ui.pages.find(function (item) {
+      return item.page_name == 'contact';
+    });
+    title = page.page_title;
+    subtitle = page.page_subtitle;
+  }
+
+  if (url.pathname == '/about') {
+    var _page = ui.pages.find(function (item) {
+      return item.page_name == 'about';
+    });
+
+    title = _page.page_title;
+    subtitle = _page.page_subtitle;
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("header", {
     className: "masthead",
     style: {
@@ -2805,7 +2820,8 @@ var LanguageToggle = function LanguageToggle() {
     return item.name == activeLanguage;
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "dropdown",
+    className: "dropdown language_dropdown collapes",
+    id: "languageDropdown",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
       className: "btn btn-secondary dropdown-toggle",
       type: "button",
@@ -2878,7 +2894,7 @@ var Navbar = function Navbar(_ref) {
         className: "navbar-toggler navbar-toggler-right",
         type: "button",
         "data-toggle": "collapse",
-        "data-target": "#navbarResponsive",
+        "data-target": "#navbarResponsive,#languageDropdown",
         "aria-controls": "navbarResponsive",
         "aria-expanded": "false",
         "aria-label": "Toggle navigation",
@@ -2886,7 +2902,7 @@ var Navbar = function Navbar(_ref) {
           className: "fas fa-bars"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "collapse navbar-collapse",
+        className: "collapse navbar-collapse collapes",
         id: "navbarResponsive",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
           className: "navbar-nav ml-auto",
@@ -3271,21 +3287,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../contexts/CustomContext */ "./resources/js/contexts/CustomContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
 var About = function About() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__.CustomContext);
+  console.log(context);
+  var activeLanguage = context.activeLanguage;
+  var ui = activeLanguage;
+  ui = context.texts[activeLanguage];
+  var page = ui.pages.find(function (item) {
+    return item.page_name == 'about';
+  });
+  console.log(page);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "col-lg-8 col-md-10 mx-auto",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-      children: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-      children: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-      children: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!"
-    })]
+    children: page.page_text
   });
 };
 
@@ -3307,7 +3327,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../contexts/CustomContext */ "./resources/js/contexts/CustomContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3330,10 +3351,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Contact = function Contact(_ref) {
   var showAlert = _ref.showAlert,
       sendMessage = _ref.sendMessage,
       clearSendMessageForm = _ref.clearSendMessageForm;
+  var context = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__.CustomContext);
+  var activeLanguage = context.activeLanguage;
+  var ui = activeLanguage;
+  ui = context.texts[activeLanguage];
+  var contact = ui.pages.find(function (item) {
+    return item.page_name == 'contact';
+  });
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3500,98 +3529,98 @@ var Contact = function Contact(_ref) {
     };
   }();
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "col-lg-8 col-md-10 mx-auto",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-      children: "Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      children: contact.page_text
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
       name: "sentMessage",
       id: "contactForm",
       onSubmit: onSubmit,
       noValidate: "",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "control-group",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "form-group floating-label-form-group controls",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             children: "Name"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             type: "text",
             onChange: onChangeName,
             value: name,
             className: "form-control",
-            placeholder: "Name",
+            placeholder: contact.name_placeholder,
             id: "name",
             required: "",
             "data-validation-required-message": "Please enter your name."
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
             className: "help-block text-danger"
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "control-group",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "form-group floating-label-form-group controls",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             children: "Email Address"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             type: "email",
             onChange: onChangeEmail,
             value: email,
             className: "form-control",
-            placeholder: "Email Address",
+            placeholder: contact.email_placeholder,
             id: "email",
             required: "",
             "data-validation-required-message": "Please enter your email address."
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
             className: "help-block text-danger"
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "control-group",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "form-group col-xs-12 floating-label-form-group controls",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             children: "Phone Number"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             type: "tel",
             value: phone,
             onChange: onChangePhone,
             className: "form-control",
-            placeholder: "Phone Number",
+            placeholder: contact.phone_placeholder,
             id: "phone",
             required: "",
             "data-validation-required-message": "Please enter your phone number."
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
             className: "help-block text-danger"
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "control-group",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "form-group floating-label-form-group controls",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             children: "Message"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
             rows: "5",
             value: text,
             onChange: onChangeText,
             className: "form-control",
-            placeholder: "Message",
+            placeholder: contact.message_placeholder,
             id: "text",
             required: "",
             "data-validation-required-message": "Please enter a message."
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
             className: "help-block text-danger"
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         id: "success"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
         type: "submit",
         className: "btn btn-primary",
         id: "sendMessageButton",
-        children: "Send"
+        children: contact.send_button
       })]
     })]
   });
@@ -3873,7 +3902,7 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
         uzbek: {
           app_title: "Dasturchilar uchun dasturchilardan blog",
           home: "bosh sahifa",
-          about: 'sayt haqida',
+          about: 'proyekt haqida',
           contact: "aloqa",
           author: "Avtor: ",
           date: " Sana: ",
@@ -3881,12 +3910,30 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
           enter_keywords: "Kalit so'zni kiriting...",
           search_button: "Izla",
           prev_page_button: "Oldingi",
-          next_page_button: "Keyingi"
+          next_page_button: "Keyingi",
+          pages: [{
+            page_name: "contact",
+            page_title: "Aloqa",
+            page_subtitle: "Proyekt yaratuvchisi bilan aloqa",
+            page_text: "Avtor bilan aloqaga chiqmochimisiz? Quyidagi formani to'ldiring va u siz bilan yaqinda orada xabarlashadi!",
+            name_placeholder: "Ismingiz",
+            email_placeholder: "Emailingiz",
+            phone_placeholder: "Telefoningiz",
+            message_placeholder: "Xabaring",
+            send_button: "Jo'natish"
+          }, {
+            page_name: "about",
+            page_title: "Haqida",
+            page_subtitle: "Proyekt haqida ",
+            page_text: "Bu proyekt dasturchilar uchun dasturchilar tomonidan yaratilgan va bu platforma dasturchilarning bloggingni boshlashini tezlashtirish uchun xizmat qiladi!"
+          }] // contact: {
+          // }
+
         },
         russian: {
           app_title: "Блог для разработчиков от разработчиков",
           home: "главная",
-          about: 'о сайт',
+          about: 'о проект',
           contact: "Контакты",
           author: "Автор: ",
           date: " Дата: ",
@@ -3894,7 +3941,23 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
           enter_keywords: "Давайте поищем...",
           search_button: "Поиск",
           prev_page_button: "Назад",
-          next_page_button: "Вперед"
+          next_page_button: "Вперед",
+          pages: [{
+            page_name: "contact",
+            page_title: "Связь",
+            page_subtitle: "Связаться с создателем",
+            page_text: "Хотите связаться с создателем? Заполните форму ниже, чтобы отправить мне сообщение, и я свяжусь с вами как можно скорее!",
+            name_placeholder: "Ваше имя",
+            email_placeholder: "Э-почта",
+            phone_placeholder: "Телефон",
+            message_placeholder: "Сообщение",
+            send_button: "Отправить"
+          }, {
+            page_name: "about",
+            page_title: "О проекте",
+            page_subtitle: "Несколко слов о проекте!",
+            page_text: "Этот проект создан для разработчиков от разработчиков, чтобы ускорить начать блоггинг!"
+          }]
         },
         english: {
           app_title: "A Blog for Developers from Developers",
@@ -3907,7 +3970,23 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
           enter_keywords: "Let's find...",
           search_button: "Search",
           prev_page_button: "Previous",
-          next_page_button: "Next"
+          next_page_button: "Next",
+          pages: [{
+            page_name: "contact",
+            page_title: "Contact",
+            page_subtitle: "Contact the creator",
+            page_text: "Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!",
+            name_placeholder: "Name",
+            email_placeholder: "Email",
+            phone_placeholder: "Telefon",
+            message_placeholder: "Message",
+            send_button: "Send"
+          }, {
+            page_name: "about",
+            page_title: "About",
+            page_subtitle: "About the project",
+            page_text: "The project was created for developers by developrs to make easy start blogging!"
+          }]
         }
       }
     };
@@ -8409,10 +8488,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, "/*!\n * Bootstrap v4.6.0 (https://getb
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/clean-blog.css":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/clean-blog.css ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/pages/clean-blog.css":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/pages/clean-blog.css ***!
+  \****************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8420,13 +8499,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
 // Imports
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/*!\n * Start Bootstrap - Clean Blog v5.0.10 (https://startbootstrap.com/theme/clean-blog)\n * Copyright 2013-2020 Start Bootstrap\n * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE)\n */\n\nbody {\n  font-size: 20px;\n  color: #212529;\n  font-family: 'Lora', 'Times New Roman', serif;\n}\n\np {\n  line-height: 1.5;\n  margin: 30px 0;\n}\n\np a {\n  text-decoration: underline;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-weight: 800;\n  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\na {\n  color: #212529;\n  transition: all 0.2s;\n}\n\na:focus, a:hover {\n  color: #0085A1;\n}\n\nblockquote {\n  font-style: italic;\n  color: #868e96;\n}\n\n.section-heading {\n  font-size: 36px;\n  font-weight: 700;\n  margin-top: 60px;\n}\n\n.caption {\n  font-size: 14px;\n  font-style: italic;\n  display: block;\n  margin: 0;\n  padding: 10px;\n  text-align: center;\n  border-bottom-right-radius: 5px;\n  border-bottom-left-radius: 5px;\n}\n\n::selection {\n  color: #fff;\n  background: #0085A1;\n  text-shadow: none;\n}\n\nimg::selection {\n  color: #fff;\n  background: transparent;\n}\n\nimg::-moz-selection {\n  color: #fff;\n  background: transparent;\n}\n\n#mainNav {\n  position: absolute;\n  border-bottom: 1px solid #e9ecef;\n  background-color: white;\n  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n#mainNav .navbar-brand {\n  font-weight: 800;\n  color: #343a40;\n}\n\n#mainNav .navbar-toggler {\n  font-size: 12px;\n  font-weight: 800;\n  padding: 13px;\n  text-transform: uppercase;\n  color: #343a40;\n}\n\n#mainNav .navbar-nav > li.nav-item > a {\n  font-size: 12px;\n  font-weight: 800;\n  letter-spacing: 1px;\n  text-transform: uppercase;\n}\n\n@media only screen and (min-width: 992px) {\n  #mainNav {\n    border-bottom: 1px solid transparent;\n    background: transparent;\n  }\n  #mainNav .navbar-brand {\n    padding: 10px 20px;\n    color: #fff;\n  }\n  #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {\n    color: rgba(255, 255, 255, 0.8);\n  }\n  #mainNav .navbar-nav > li.nav-item > a {\n    padding: 10px 20px;\n    color: #fff;\n  }\n  #mainNav .navbar-nav > li.nav-item > a:focus, #mainNav .navbar-nav > li.nav-item > a:hover {\n    color: rgba(255, 255, 255, 0.8);\n  }\n}\n\n@media only screen and (min-width: 992px) {\n  #mainNav {\n    transition: background-color 0.2s;\n    /* Force Hardware Acceleration in WebKit */\n    transform: translate3d(0, 0, 0);\n    -webkit-backface-visibility: hidden;\n    backface-visibility: hidden;\n  }\n  #mainNav.is-fixed {\n    /* when the user scrolls down, we hide the header right above the viewport */\n    position: fixed;\n    top: -67px;\n    transition: transform 0.2s;\n    border-bottom: 1px solid white;\n    background-color: rgba(255, 255, 255, 0.9);\n  }\n  #mainNav.is-fixed .navbar-brand {\n    color: #212529;\n  }\n  #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {\n    color: #0085A1;\n  }\n  #mainNav.is-fixed .navbar-nav > li.nav-item > a {\n    color: #212529;\n  }\n  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {\n    color: #0085A1;\n  }\n  #mainNav.is-visible {\n    /* if the user changes the scrolling direction, we show the header */\n    transform: translate3d(0, 100%, 0);\n  }\n}\n\nheader.masthead {\n  margin-bottom: 50px;\n  background: no-repeat center center;\n  background-color: #868e96;\n  background-attachment: scroll;\n  position: relative;\n  background-size: cover;\n}\n\nheader.masthead .overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 100%;\n  background-color: #212529;\n  opacity: 0.5;\n}\n\nheader.masthead .page-heading,\nheader.masthead .post-heading,\nheader.masthead .site-heading {\n  padding: 200px 0 150px;\n  color: white;\n}\n\n@media only screen and (min-width: 768px) {\n  header.masthead .page-heading,\n  header.masthead .post-heading,\n  header.masthead .site-heading {\n    padding: 200px 0;\n  }\n}\n\nheader.masthead .page-heading,\nheader.masthead .site-heading {\n  text-align: center;\n}\n\nheader.masthead .page-heading h1,\nheader.masthead .site-heading h1 {\n  font-size: 50px;\n  margin-top: 0;\n}\n\nheader.masthead .page-heading .subheading,\nheader.masthead .site-heading .subheading {\n  font-size: 24px;\n  font-weight: 300;\n  line-height: 1.1;\n  display: block;\n  margin: 10px 0 0;\n  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n@media only screen and (min-width: 768px) {\n  header.masthead .page-heading h1,\n  header.masthead .site-heading h1 {\n    font-size: 80px;\n  }\n}\n\nheader.masthead .post-heading h1 {\n  font-size: 35px;\n}\n\nheader.masthead .post-heading .meta,\nheader.masthead .post-heading .subheading {\n  line-height: 1.1;\n  display: block;\n}\n\nheader.masthead .post-heading .subheading {\n  font-size: 24px;\n  font-weight: 600;\n  margin: 10px 0 30px;\n  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\nheader.masthead .post-heading .meta {\n  font-size: 20px;\n  font-weight: 300;\n  font-style: italic;\n  font-family: 'Lora', 'Times New Roman', serif;\n}\n\nheader.masthead .post-heading .meta a {\n  color: #fff;\n}\n\n@media only screen and (min-width: 768px) {\n  header.masthead .post-heading h1 {\n    font-size: 55px;\n  }\n  header.masthead .post-heading .subheading {\n    font-size: 30px;\n  }\n}\n\n.post-preview > a {\n  color: #212529;\n}\n\n.post-preview > a:focus, .post-preview > a:hover {\n  text-decoration: none;\n  color: #0085A1;\n}\n\n.post-preview > a > .post-title {\n  font-size: 30px;\n  margin-top: 30px;\n  margin-bottom: 10px;\n}\n\n.post-preview > a > .post-subtitle {\n  font-weight: 300;\n  margin: 0 0 10px;\n}\n\n.post-preview > .post-meta {\n  font-size: 18px;\n  font-style: italic;\n  margin-top: 0;\n  color: #868e96;\n}\n\n.post-preview > .post-meta > a {\n  text-decoration: none;\n  color: #212529;\n}\n\n.post-preview > .post-meta > a:focus, .post-preview > .post-meta > a:hover {\n  text-decoration: underline;\n  color: #0085A1;\n}\n\n@media only screen and (min-width: 768px) {\n  .post-preview > a > .post-title {\n    font-size: 36px;\n  }\n}\n\n.floating-label-form-group {\n  font-size: 14px;\n  position: relative;\n  margin-bottom: 0;\n  padding-bottom: 0.5em;\n  border-bottom: 1px solid #dee2e6;\n}\n\n.floating-label-form-group input,\n.floating-label-form-group textarea {\n  font-size: 1.5em;\n  position: relative;\n  z-index: 1;\n  padding: 0;\n  resize: none;\n  border: none;\n  border-radius: 0;\n  background: none;\n  box-shadow: none !important;\n  font-family: 'Lora', 'Times New Roman', serif;\n}\n\n.floating-label-form-group input::-webkit-input-placeholder,\n.floating-label-form-group textarea::-webkit-input-placeholder {\n  color: #868e96;\n  font-family: 'Lora', 'Times New Roman', serif;\n}\n\n.floating-label-form-group label {\n  font-size: 0.85em;\n  line-height: 1.764705882em;\n  position: relative;\n  z-index: 0;\n  top: 2em;\n  display: block;\n  margin: 0;\n  transition: top 0.3s ease, opacity 0.3s ease;\n  opacity: 0;\n}\n\n.floating-label-form-group .help-block {\n  margin: 15px 0;\n}\n\n.floating-label-form-group-with-value label {\n  top: 0;\n  opacity: 1;\n}\n\n.floating-label-form-group-with-focus label {\n  color: #0085A1;\n}\n\nform .form-group:first-child .floating-label-form-group {\n  border-top: 1px solid #dee2e6;\n}\n\nfooter {\n  padding: 50px 0 65px;\n}\n\nfooter .list-inline {\n  margin: 0;\n  padding: 0;\n}\n\nfooter .copyright {\n  font-size: 14px;\n  margin-bottom: 0;\n  text-align: center;\n}\n\n.btn {\n  font-size: 14px;\n  font-weight: 800;\n  /* padding: 15px 25px; */\n  letter-spacing: 1px;\n  text-transform: uppercase;\n  border-radius: 0;\n  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n.btn-primary {\n  background-color: #0085A1;\n  border-color: #0085A1;\n}\n\n.btn-primary:hover, .btn-primary:focus, .btn-primary:active {\n  color: #fff;\n  background-color: #00657b !important;\n  border-color: #00657b !important;\n}\n\n.btn-lg {\n  font-size: 16px;\n  padding: 25px 35px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/*!\n * Start Bootstrap - Clean Blog v5.0.10 (https://startbootstrap.com/theme/clean-blog)\n * Copyright 2013-2020 Start Bootstrap\n * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE)\n */\n\nbody {\n    font-size: 20px;\n    color: #212529;\n    font-family: 'Lora', 'Times New Roman', serif;\n}\n\np {\n    line-height: 1.5;\n    margin: 30px 0;\n}\n\np a {\n    text-decoration: underline;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-weight: 800;\n    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\na {\n    color: #212529;\n    transition: all 0.2s;\n}\n\na:focus,\na:hover {\n    color: #0085A1;\n}\n\nblockquote {\n    font-style: italic;\n    color: #868e96;\n}\n\n.section-heading {\n    font-size: 36px;\n    font-weight: 700;\n    margin-top: 60px;\n}\n\n.caption {\n    font-size: 14px;\n    font-style: italic;\n    display: block;\n    margin: 0;\n    padding: 10px;\n    text-align: center;\n    border-bottom-right-radius: 5px;\n    border-bottom-left-radius: 5px;\n}\n\n::selection {\n    color: #fff;\n    background: #0085A1;\n    text-shadow: none;\n}\n\nimg::selection {\n    color: #fff;\n    background: transparent;\n}\n\nimg::-moz-selection {\n    color: #fff;\n    background: transparent;\n}\n\n#mainNav {\n    position: absolute;\n    border-bottom: 1px solid #e9ecef;\n    background-color: white;\n    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n#mainNav .navbar-brand {\n    font-weight: 800;\n    color: #343a40;\n}\n\n#mainNav .navbar-toggler {\n    font-size: 12px;\n    font-weight: 800;\n    padding: 13px;\n    text-transform: uppercase;\n    color: #343a40;\n}\n\n#mainNav .navbar-nav>li.nav-item>a {\n    font-size: 12px;\n    font-weight: 800;\n    letter-spacing: 1px;\n    text-transform: uppercase;\n}\n\n@media only screen and (min-width: 992px) {\n    #mainNav {\n        border-bottom: 1px solid transparent;\n        background: transparent;\n    }\n\n    #mainNav .navbar-brand {\n        padding: 10px 20px;\n        color: #fff;\n    }\n\n    #mainNav .navbar-brand:focus,\n    #mainNav .navbar-brand:hover {\n        color: rgba(255, 255, 255, 0.8);\n    }\n\n    #mainNav .navbar-nav>li.nav-item>a {\n        padding: 10px 20px;\n        color: #fff;\n    }\n\n    #mainNav .navbar-nav>li.nav-item>a:focus,\n    #mainNav .navbar-nav>li.nav-item>a:hover {\n        color: rgba(255, 255, 255, 0.8);\n    }\n}\n\n@media only screen and (min-width: 992px) {\n    #mainNav {\n        transition: background-color 0.2s;\n        /* Force Hardware Acceleration in WebKit */\n        transform: translate3d(0, 0, 0);\n        -webkit-backface-visibility: hidden;\n        backface-visibility: hidden;\n    }\n\n    #mainNav.is-fixed {\n        /* when the user scrolls down, we hide the header right above the viewport */\n        position: fixed;\n        top: -67px;\n        transition: transform 0.2s;\n        border-bottom: 1px solid white;\n        background-color: rgba(255, 255, 255, 0.9);\n    }\n\n    #mainNav.is-fixed .navbar-brand {\n        color: #212529;\n    }\n\n    #mainNav.is-fixed .navbar-brand:focus,\n    #mainNav.is-fixed .navbar-brand:hover {\n        color: #0085A1;\n    }\n\n    #mainNav.is-fixed .navbar-nav>li.nav-item>a {\n        color: #212529;\n    }\n\n    #mainNav.is-fixed .navbar-nav>li.nav-item>a:focus,\n    #mainNav.is-fixed .navbar-nav>li.nav-item>a:hover {\n        color: #0085A1;\n    }\n\n    #mainNav.is-visible {\n        /* if the user changes the scrolling direction, we show the header */\n        transform: translate3d(0, 100%, 0);\n    }\n}\n\nheader.masthead {\n    margin-bottom: 50px;\n    background: no-repeat center center;\n    background-color: #868e96;\n    background-attachment: scroll;\n    position: relative;\n    background-size: cover;\n}\n\nheader.masthead .overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    height: 100%;\n    width: 100%;\n    background-color: #212529;\n    opacity: 0.5;\n}\n\nheader.masthead .page-heading,\nheader.masthead .post-heading,\nheader.masthead .site-heading {\n    padding: 200px 0 150px;\n    color: white;\n}\n\n@media only screen and (min-width: 768px) {\n\n    header.masthead .page-heading,\n    header.masthead .post-heading,\n    header.masthead .site-heading {\n        padding: 200px 0;\n    }\n}\n\nheader.masthead .page-heading,\nheader.masthead .site-heading {\n    text-align: center;\n}\n\nheader.masthead .page-heading h1,\nheader.masthead .site-heading h1 {\n    font-size: 50px;\n    margin-top: 0;\n}\n\nheader.masthead .page-heading .subheading,\nheader.masthead .site-heading .subheading {\n    font-size: 24px;\n    font-weight: 300;\n    line-height: 1.1;\n    display: block;\n    margin: 10px 0 0;\n    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n@media only screen and (min-width: 768px) {\n\n    header.masthead .page-heading h1,\n    header.masthead .site-heading h1 {\n        font-size: 80px;\n    }\n}\n\nheader.masthead .post-heading h1 {\n    font-size: 35px;\n}\n\nheader.masthead .post-heading .meta,\nheader.masthead .post-heading .subheading {\n    line-height: 1.1;\n    display: block;\n}\n\nheader.masthead .post-heading .subheading {\n    font-size: 24px;\n    font-weight: 600;\n    margin: 10px 0 30px;\n    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\nheader.masthead .post-heading .meta {\n    font-size: 20px;\n    font-weight: 300;\n    font-style: italic;\n    font-family: 'Lora', 'Times New Roman', serif;\n}\n\nheader.masthead .post-heading .meta a {\n    color: #fff;\n}\n\n@media only screen and (min-width: 768px) {\n    header.masthead .post-heading h1 {\n        font-size: 55px;\n    }\n\n    header.masthead .post-heading .subheading {\n        font-size: 30px;\n    }\n}\n\n.post-preview>a {\n    color: #212529;\n}\n\n.post-preview>a:focus,\n.post-preview>a:hover {\n    text-decoration: none;\n    color: #0085A1;\n}\n\n.post-preview>a>.post-title {\n    font-size: 30px;\n    margin-top: 30px;\n    margin-bottom: 10px;\n}\n\n.post-preview>a>.post-subtitle {\n    font-weight: 300;\n    margin: 0 0 10px;\n}\n\n.post-preview>.post-meta {\n    font-size: 18px;\n    font-style: italic;\n    margin-top: 0;\n    color: #868e96;\n}\n\n.post-preview>.post-meta>a {\n    text-decoration: none;\n    color: #212529;\n}\n\n.post-preview>.post-meta>a:focus,\n.post-preview>.post-meta>a:hover {\n    text-decoration: underline;\n    color: #0085A1;\n}\n\n@media only screen and (min-width: 768px) {\n    .post-preview>a>.post-title {\n        font-size: 36px;\n    }\n}\n\n.floating-label-form-group {\n    font-size: 14px;\n    position: relative;\n    margin-bottom: 0;\n    padding-bottom: 0.5em;\n    border-bottom: 1px solid #dee2e6;\n}\n\n.floating-label-form-group input,\n.floating-label-form-group textarea {\n    font-size: 1.5em;\n    position: relative;\n    z-index: 1;\n    padding: 0;\n    resize: none;\n    border: none;\n    border-radius: 0;\n    background: none;\n    box-shadow: none !important;\n    font-family: 'Lora', 'Times New Roman', serif;\n}\n\n.floating-label-form-group input::-webkit-input-placeholder,\n.floating-label-form-group textarea::-webkit-input-placeholder {\n    color: #868e96;\n    font-family: 'Lora', 'Times New Roman', serif;\n}\n\n.floating-label-form-group label {\n    font-size: 0.85em;\n    line-height: 1.764705882em;\n    position: relative;\n    z-index: 0;\n    top: 2em;\n    display: block;\n    margin: 0;\n    transition: top 0.3s ease, opacity 0.3s ease;\n    opacity: 0;\n}\n\n.floating-label-form-group .help-block {\n    margin: 15px 0;\n}\n\n.floating-label-form-group-with-value label {\n    top: 0;\n    opacity: 1;\n}\n\n.floating-label-form-group-with-focus label {\n    color: #0085A1;\n}\n\nform .form-group:first-child .floating-label-form-group {\n    border-top: 1px solid #dee2e6;\n}\n\nfooter {\n    padding: 50px 0 65px;\n}\n\nfooter .list-inline {\n    margin: 0;\n    padding: 0;\n}\n\nfooter .copyright {\n    font-size: 14px;\n    margin-bottom: 0;\n    text-align: center;\n}\n\n.btn {\n    font-size: 14px;\n    font-weight: 800;\n    /* padding: 15px 25px; */\n    letter-spacing: 1px;\n    text-transform: uppercase;\n    border-radius: 0;\n    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n.btn-primary {\n    background-color: #0085A1;\n    border-color: #0085A1;\n}\n\n.btn-primary:hover,\n.btn-primary:focus,\n.btn-primary:active {\n    color: #fff;\n    background-color: #00657b !important;\n    border-color: #00657b !important;\n}\n\n.btn-lg {\n    font-size: 16px;\n    padding: 25px 35px;\n}\n\n\n.language_dropdown {\n    display: block;\n}\n\n\n.language_dropdown .btn-secondary {\n    background-color: transparent !important;\n    border-color: transparent !important;\n}\n\n\n@media screen and (max-width: 768px) {\n\n    .language_dropdown {\n        display: none;\n    }\n\n    .language_dropdown .btn-secondary {\n        background-color: transparent;\n        border-color: transparent;\n        color: #000 !important;\n        padding-left: 0 !important;\n    }\n\n    .language_dropdown .btn-secondary:active,\n    .language_dropdown .btn-secondary:focus {\n        outline: 0 !important;\n        border: 0 !important;\n        box-shadow: none !important;\n    }\n\n    /* .language_dropdown.show {\n        display: block;\n    } */\n\n    #navbarResponsive.show+.language_dropdown {\n        display: block;\n    }\n\n\n    .pagination .page-link {\n        padding: 2px;\n    }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -73475,10 +73554,10 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 /***/ }),
 
-/***/ "./resources/js/components/clean-blog.css":
-/*!************************************************!*\
-  !*** ./resources/js/components/clean-blog.css ***!
-  \************************************************/
+/***/ "./resources/js/components/pages/clean-blog.css":
+/*!******************************************************!*\
+  !*** ./resources/js/components/pages/clean-blog.css ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -73486,9 +73565,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_clean_blog_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./clean-blog.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/clean-blog.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_clean_blog_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./clean-blog.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/components/pages/clean-blog.css");
 
             
 

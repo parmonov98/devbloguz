@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Search from '../layouts/Search';
 import { CustomContext } from '../../contexts/CustomContext';
 
@@ -11,6 +12,8 @@ import { CustomContext } from '../../contexts/CustomContext';
 const Header = ({ image, title, subtitle, searchPosts, setAlert }) => {
     // let pageHeaderImage = images(`./${image}`);
 
+    const url = useLocation();
+
 
     const context = useContext(CustomContext);
     const { activeLanguage } = context;
@@ -18,7 +21,19 @@ const Header = ({ image, title, subtitle, searchPosts, setAlert }) => {
     let ui = activeLanguage;
     ui = context.texts[activeLanguage];
 
-    subtitle = ui.app_title;
+    if (url.pathname == '/') {
+        subtitle = ui.app_title;
+    }
+    if (url.pathname == '/contact') {
+        const page = ui.pages.find((item) => item.page_name == 'contact');
+        title = page.page_title;
+        subtitle = page.page_subtitle;
+    }
+    if (url.pathname == '/about') {
+        const page = ui.pages.find((item) => item.page_name == 'about');
+        title = page.page_title;
+        subtitle = page.page_subtitle;
+    }
 
     return (
         <header className="masthead" style={{ backgroundImage: `url(/assets/${image})` }}>
