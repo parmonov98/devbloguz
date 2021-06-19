@@ -19,18 +19,34 @@ const LangRouter = (props) => {
 
     useEffect(() => {
         let urlLocale = url.pathname.substring(1, 3);
-        if (locale !== urlLocale && urlLocale !== '') {
+        if (urlLocale == '') {
+            if (locale == 'uz' || locale == 'ru' || locale == 'en') {
+                setLanguage(locale);
+            } else {
+                setLanguage('uz')
+            }
+            return;
+        }
 
-            if (localStorageLang == 'uz' || localStorageLang == 'ru' || localStorageLang == 'en') {
+        if (locale !== urlLocale) {
+
+            if (urlLocale == 'uz' || urlLocale == 'ru' || urlLocale == 'en') {
                 setLanguage(urlLocale);
             } else {
                 setLanguage('uz')
             }
-
-
-        } else {
-            setLanguage(locale);
+            return;
         }
+
+        if (locale === urlLocale) {
+            if (urlLocale == 'uz' || urlLocale == 'ru' || urlLocale == 'en') {
+                setLanguage(urlLocale);
+            } else {
+                setLanguage('uz')
+            }
+            return;
+        }
+
 
     }, []);
 
@@ -40,8 +56,14 @@ const LangRouter = (props) => {
         window.localStorage.setItem('locale', newLocale);
     }
 
+
+    if (locale == null || locale == '') {
+        setLocale('uz');
+    }
+
+
     return (
-        <CustomContextProvider {...props} setLanguage={setLanguage} locale={locale}>
+        <CustomContextProvider {...props} setLanguage={setLanguage} locale={locale ?? 'uz'}>
             <Switch>
                 <Route path="/" exact render={propRouter => {
                     return <Redirect to={locale + "/"} />
