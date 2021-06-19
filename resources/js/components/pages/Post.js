@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { CustomContext } from './../../contexts/CustomContext'
 
 const Post = ({ getPost, post }) => {
 
@@ -14,7 +16,7 @@ const Post = ({ getPost, post }) => {
 
     useEffect(() => {
         getPost(post_slug);
-        document.title = ui.app_name + ' - ' + page.page_title;
+        document.title = ui.app_name + ' - ' + post_slug;
     }, [])
 
     return (

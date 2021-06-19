@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useContext } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, useParams, useLocation } from 'react-router-dom';
 import { CustomContext } from './../contexts/CustomContext';
 // import PropTypes from 'prop-types';
