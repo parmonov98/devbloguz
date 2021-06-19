@@ -4,12 +4,16 @@ import { CustomContext } from './../../contexts/CustomContext';
 const Contact = ({ showAlert, sendMessage, clearSendMessageForm }) => {
 
     const context = useContext(CustomContext);
-    const { activeLanguage } = context;
+    const { activeLanguage, locale } = context;
 
-    let ui = activeLanguage;
-    ui = context.texts[activeLanguage];
+    let ui = locale;
+    ui = context.texts[locale];
 
-    const contact = ui.pages.find((item) => item.page_name == 'contact');
+    // console.log(ui);
+
+    const page = ui.pages.find((item) => item.page_name == 'contact');
+
+    // console.log(page);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -82,12 +86,12 @@ const Contact = ({ showAlert, sendMessage, clearSendMessageForm }) => {
 
     return (
         <div className="col-lg-8 col-md-10 mx-auto">
-            <p>{contact.page_text}</p>
+            <p>{page.page_text}</p>
             <form name="sentMessage" id="contactForm" onSubmit={onSubmit} noValidate="">
                 <div className="control-group">
                     <div className="form-group floating-label-form-group controls">
                         <label>Name</label>
-                        <input type="text" onChange={onChangeName} value={name} className="form-control" placeholder={contact.name_placeholder} id="name" required="" data-validation-required-message="Please enter your name." />
+                        <input type="text" onChange={onChangeName} value={name} className="form-control" placeholder={page.name_placeholder} id="name" required="" data-validation-required-message="Please enter your name." />
                         <p className="help-block text-danger"></p>
                     </div>
                 </div>
@@ -95,7 +99,7 @@ const Contact = ({ showAlert, sendMessage, clearSendMessageForm }) => {
                 <div className="control-group">
                     <div className="form-group floating-label-form-group controls">
                         <label>Email Address</label>
-                        <input type="email" onChange={onChangeEmail} value={email} className="form-control" placeholder={contact.email_placeholder} id="email" required="" data-validation-required-message="Please enter your email address." />
+                        <input type="email" onChange={onChangeEmail} value={email} className="form-control" placeholder={page.email_placeholder} id="email" required="" data-validation-required-message="Please enter your email address." />
                         <p className="help-block text-danger"></p>
                     </div>
                 </div>
@@ -103,7 +107,7 @@ const Contact = ({ showAlert, sendMessage, clearSendMessageForm }) => {
                 <div className="control-group">
                     <div className="form-group col-xs-12 floating-label-form-group controls">
                         <label>Phone Number</label>
-                        <input type="tel" value={phone} onChange={onChangePhone} className="form-control" placeholder={contact.phone_placeholder} id="phone" required="" data-validation-required-message="Please enter your phone number." />
+                        <input type="tel" value={phone} onChange={onChangePhone} className="form-control" placeholder={page.phone_placeholder} id="phone" required="" data-validation-required-message="Please enter your phone number." />
                         <p className="help-block text-danger"></p>
                     </div>
                 </div>
@@ -111,14 +115,14 @@ const Contact = ({ showAlert, sendMessage, clearSendMessageForm }) => {
                 <div className="control-group">
                     <div className="form-group floating-label-form-group controls">
                         <label>Message</label>
-                        <textarea rows="5" value={text} onChange={onChangeText} className="form-control" placeholder={contact.message_placeholder} id="text" required="" data-validation-required-message="Please enter a message."></textarea>
+                        <textarea rows="5" value={text} onChange={onChangeText} className="form-control" placeholder={page.message_placeholder} id="text" required="" data-validation-required-message="Please enter a message."></textarea>
                         <p className="help-block text-danger"></p>
                     </div>
                 </div>
 
                 <br />
                 <div id="success"></div>
-                <button type="submit" className="btn btn-primary" id="sendMessageButton">{contact.send_button}</button>
+                <button type="submit" className="btn btn-primary" id="sendMessageButton">{page.send_button}</button>
 
             </form>
 

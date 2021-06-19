@@ -14,22 +14,24 @@ const Header = ({ image, title, subtitle, searchPosts, setAlert }) => {
 
     const url = useLocation();
 
+    // console.log(url.pathname);
 
     const context = useContext(CustomContext);
-    const { activeLanguage } = context;
+    const { activeLanguage, locale } = context;
 
-    let ui = activeLanguage;
-    ui = context.texts[activeLanguage];
 
-    if (url.pathname == '/') {
+    let ui = locale;
+    ui = context.texts[locale];
+
+    if (url.pathname == '/' + locale + '/') {
         subtitle = ui.app_title;
     }
-    if (url.pathname == '/contact') {
+    if (url.pathname == '/' + locale + '/contact' || url.pathname == '/' + locale + '/contact/') {
         const page = ui.pages.find((item) => item.page_name == 'contact');
         title = page.page_title;
         subtitle = page.page_subtitle;
     }
-    if (url.pathname == '/about') {
+    if (url.pathname == '/' + locale + '/about' || url.pathname == '/' + locale + '/about/') {
         const page = ui.pages.find((item) => item.page_name == 'about');
         title = page.page_title;
         subtitle = page.page_subtitle;

@@ -5,10 +5,10 @@ import { CustomContext } from './../../contexts/CustomContext';
 const Search = ({ setAlert, searchPosts }) => {
 
     const context = useContext(CustomContext);
-    const { activeLanguage } = context;
+    const { activeLanguage, locale } = context;
 
     let ui = activeLanguage;
-    ui = context.texts[activeLanguage];
+    ui = context.texts[locale];
 
     const [keywords, setKeywords] = useState('');
     const [alert, setAlertState] = useState(null);

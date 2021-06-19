@@ -15,7 +15,7 @@ class CustomContextProvider extends Component {
             ui: '#333',
             bg: '#555'
         },
-        activeLanguage: "uzbek",
+        locale: "uz",
         languages: [
             {
                 name: "uzbek",
@@ -38,7 +38,7 @@ class CustomContextProvider extends Component {
 
         ],
         texts: {
-            uzbek: {
+            uz: {
                 app_title: "Dasturchilar uchun dasturchilardan blog",
                 home: "bosh sahifa",
                 about: 'proyekt haqida',
@@ -72,7 +72,7 @@ class CustomContextProvider extends Component {
                 // contact: {
                 // }
             },
-            russian: {
+            ru: {
                 app_title: "Блог для разработчиков от разработчиков",
                 home: "главная",
                 about: 'о проект',
@@ -104,7 +104,7 @@ class CustomContextProvider extends Component {
                     }
                 ]
             },
-            english: {
+            en: {
                 app_title: "A Blog for Developers from Developers",
                 home: "home",
                 about: 'about',
@@ -136,19 +136,43 @@ class CustomContextProvider extends Component {
                     }
                 ]
             }
-        }
+        },
+        setLocale: () => {
 
+        }
     };
 
-    switchActiveLanguage = (lang = 'uzbek') => {
-        if (this.state.activeLanguage !== lang) {
-            this.setState({ activeLanguage: lang });
+    constructor(props) {
+        super(props);
+        this.state.locale = props.locale;
+    }
+
+
+    setLanguage = (lang) => {
+        if (this.state.locale !== lang) {
+            this.setState({ locale: lang });
+            window.localStorage.setItem('locale', lang);
         }
     }
 
+    componentDidMount() {
+        if (this.props.locale == 'uz' || this.props.locale == 'ru' || this.props.locale == 'en') {
+            this.setLanguage(this.props.locale);
+        } else {
+            const localStorageLang = window.localStorage.getItem('locale');
+            if (localStorageLang == 'uz' || localStorageLang == 'ru' || localStorageLang == 'en') {
+                this.setLanguage(localStorageLang);
+            } else {
+                this.setLanguage('uz')
+            }
+        }
+
+    }
+
+
     render() {
         return (
-            <CustomContext.Provider value={{ ...this.state, switchActiveLanguage: this.switchActiveLanguage }}>
+            <CustomContext.Provider value={{ ...this.state, ...this.props, setLanguage: this.setLanguage }}>
                 {this.props.children}
             </CustomContext.Provider>
         );

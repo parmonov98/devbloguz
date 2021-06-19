@@ -10,7 +10,6 @@ const Posts = ({ posts, meta, params, getPosts }) => {
     const url = window.location.pathname.split('/').pop();
 
     useEffect(() => {
-        console.log(page_number);
         if (parseInt(params.page_number) !== page_number) {
             setPageNumber(params.page_number);
             getPosts(parseInt(params.page_number));

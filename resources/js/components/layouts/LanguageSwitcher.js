@@ -1,13 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { useLocation, Redirect, useHistory, Link } from 'react-router-dom';
 import { CustomContext } from './../../contexts/CustomContext';
 
-const LanguageToggle = () => {
+const LanguageSwitcher = () => {
 
-
+    const url = useLocation();
     const context = useContext(CustomContext);
-    const { activeLanguage, languages, switchActiveLanguage } = context;
-    let lang = activeLanguage;
-    lang = context.languages.find((item) => item.name == activeLanguage);
+    const { locale, languages } = context;
+    const lang = context.languages.find((item) => item.code == locale);
+
+    const changeLanguage = (lang) => {
+        let path = url.pathname;
+        path = path.replace(locale, lang);
+        window.location.href = path;
+    }
+
 
     return (
         <div className="dropdown language_dropdown collapes" id="languageDropdown">
@@ -17,7 +24,7 @@ const LanguageToggle = () => {
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {
                     languages.map((item) => (
-                        <a key={item.code} onClick={() => switchActiveLanguage(`${item.name}`)} data-lang={item.name} className="dropdown-item" href="#">{item.flag} {item.title}</a>
+                        <a key={item.code} data-lang={item.name} onClick={() => changeLanguage(item.code)} className="dropdown-item" href="#">{item.flag} {item.title}</a>
                     ))
                 }
             </div>
@@ -25,4 +32,4 @@ const LanguageToggle = () => {
     );
 }
 
-export default LanguageToggle;
+export default LanguageSwitcher;

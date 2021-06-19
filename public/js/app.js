@@ -1932,9 +1932,10 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _LangRouter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LangRouter */ "./resources/js/LangRouter.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -1942,11 +1943,136 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 if (document.getElementById('app')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_3__.default, {})
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_LangRouter__WEBPACK_IMPORTED_MODULE_3__.default, {})
   }), document.getElementById('app')); // ReactDOM.render(<Example />, document.getElementById('app'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/LangRouter.js":
+/*!************************************!*\
+  !*** ./resources/js/LangRouter.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.js");
+/* harmony import */ var _components_pages_Page404__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/pages/Page404 */ "./resources/js/components/pages/Page404.js");
+/* harmony import */ var _contexts_CustomContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contexts/CustomContext */ "./resources/js/contexts/CustomContext.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var LangRouter = function LangRouter(props) {
+  var url = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useLocation)();
+  var localStorageLang = window.localStorage.getItem('locale');
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(localStorageLang),
+      _useState2 = _slicedToArray(_useState, 2),
+      locale = _useState2[0],
+      setLocale = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var urlLocale = url.pathname.substring(1, 3);
+
+    if (locale !== urlLocale && urlLocale !== '') {
+      if (localStorageLang == 'uz' || localStorageLang == 'ru' || localStorageLang == 'en') {
+        setLanguage(urlLocale);
+      } else {
+        setLanguage('uz');
+      }
+    } else {
+      setLanguage(locale);
+    }
+  }, []);
+
+  var setLanguage = function setLanguage(newLocale) {
+    setLocale(newLocale);
+    window.localStorage.setItem('locale', newLocale);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({}, props), {}, {
+    setLanguage: setLanguage,
+    locale: locale,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Switch, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+        path: "/",
+        exact: true,
+        render: function render(propRouter) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Redirect, {
+            to: locale + "/"
+          });
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+        path: "/en/*",
+        render: function render(propsRouter) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_1__.default, _objectSpread(_objectSpread({}, propsRouter), {}, {
+            locale: locale,
+            setLocale: setLocale
+          }));
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+        path: "/ru/*",
+        render: function render(propsRouter) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_1__.default, _objectSpread(_objectSpread({}, propsRouter), {}, {
+            locale: locale,
+            setLocale: setLocale
+          }));
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+        path: "/uz/*",
+        render: function render(propsRouter) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_App__WEBPACK_IMPORTED_MODULE_1__.default, _objectSpread(_objectSpread({}, propsRouter), {}, {
+            locale: locale,
+            setLocale: setLocale
+          }));
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+        path: "*",
+        render: function render(propsRouter) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_pages_Page404__WEBPACK_IMPORTED_MODULE_2__.default, _objectSpread(_objectSpread({}, propsRouter), {}, {
+            locale: locale,
+            setLocale: setLocale
+          }));
+        }
+      })]
+    })
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LangRouter);
 
 /***/ }),
 
@@ -2031,8 +2157,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../contexts/CustomContext */ "./resources/js/contexts/CustomContext.js");
 /* harmony import */ var _pages_clean_blog_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/clean-blog.css */ "./resources/js/components/pages/clean-blog.css");
 /* harmony import */ var _layouts_Navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./layouts/Navbar */ "./resources/js/components/layouts/Navbar.js");
@@ -2094,6 +2219,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var App = function App(props) {
+  var context = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__.CustomContext);
+  var url = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_17__.useLocation)();
+  var locale = context.locale,
+      setLanguage = context.setLanguage;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
       loading = _useState2[0],
@@ -2157,7 +2287,6 @@ var App = function App(props) {
               requestData = _context.sent;
 
               if (!requestData.code) {
-                console.log(requestData);
                 setPosts(requestData.data);
 
                 if (requestData.meta) {
@@ -2353,214 +2482,210 @@ var App = function App(props) {
     }, 5000);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__.default, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Navbar__WEBPACK_IMPORTED_MODULE_4__.default, {
-          title: "DevBlog.Uz"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Switch, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
-            exact: true,
-            path: "/",
-            render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
-                  title: "DevBlog.UZ",
-                  setAlert: showAlert,
-                  searchPosts: searchPosts,
-                  subtitle: "A Blog By Murod Parmonov",
-                  image: 'home-bg.jpg'
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                  className: "container",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                    className: "row",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_ProgressBar__WEBPACK_IMPORTED_MODULE_6__.default, {
-                      loading: loading
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                      className: "col",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Alert__WEBPACK_IMPORTED_MODULE_11__.default, {
-                        alert: alert
-                      })
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Posts__WEBPACK_IMPORTED_MODULE_9__.default, {
-                      meta: meta,
-                      posts: posts,
-                      params: props.match.params,
-                      getPosts: getPosts
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row justify-content-center",
-                    children: posts.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_PostsPagination__WEBPACK_IMPORTED_MODULE_7__.default, {
-                      meta: meta,
-                      links: links
-                    }) : "no posts"
-                  })]
-                })]
-              });
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
-            path: ["/page/:page_number"],
-            render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
-                  title: "DevBlog.UZ",
-                  setAlert: showAlert,
-                  searchPosts: searchPosts,
-                  subtitle: "A Blog By Murod Parmonov",
-                  image: 'home-bg.jpg'
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                  className: "container",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                    className: "row",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_ProgressBar__WEBPACK_IMPORTED_MODULE_6__.default, {
-                      loading: loading
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                      className: "col",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Alert__WEBPACK_IMPORTED_MODULE_11__.default, {
-                        alert: alert
-                      })
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row justify-content-center",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Posts__WEBPACK_IMPORTED_MODULE_9__.default, {
-                      meta: meta,
-                      posts: posts,
-                      params: props.match.params,
-                      getPosts: getPosts
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row justify-content-center",
-                    children: posts.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_PostsPagination__WEBPACK_IMPORTED_MODULE_7__.default, {
-                      meta: meta,
-                      links: links
-                    }) : "no posts"
-                  })]
-                })]
-              });
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
-            exact: true,
-            path: "/user/:username",
-            render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
-                  title: post.title,
-                  subtitle: post.description,
-                  image: post.image
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Navbar__WEBPACK_IMPORTED_MODULE_4__.default, {
+      title: "DevBlog.Uz"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Switch, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+        exact: true,
+        path: ["/" + locale + "/", "/" + locale],
+        render: function render(props) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
+              title: "DevBlog.UZ",
+              setAlert: showAlert,
+              searchPosts: searchPosts,
+              subtitle: "A Blog By Murod Parmonov",
+              image: 'home-bg.jpg'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+              className: "container",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_ProgressBar__WEBPACK_IMPORTED_MODULE_6__.default, {
+                  loading: loading
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                  className: "container",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_User__WEBPACK_IMPORTED_MODULE_13__.default, _objectSpread(_objectSpread({}, props), {}, {
-                      getUser: getUser,
-                      user: user
-                    }))
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Alert__WEBPACK_IMPORTED_MODULE_11__.default, {
+                    alert: alert
                   })
                 })]
-              });
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
-            exact: true,
-            path: "/about",
-            render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
-                  title: "Murod Parmonov",
-                  subtitle: "About @parmonov98",
-                  image: 'about-bg.jpg'
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Posts__WEBPACK_IMPORTED_MODULE_9__.default, {
+                  meta: meta,
+                  posts: posts,
+                  params: props.match.params,
+                  getPosts: getPosts
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row justify-content-center",
+                children: posts.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_PostsPagination__WEBPACK_IMPORTED_MODULE_7__.default, {
+                  meta: meta,
+                  links: links
+                }) : "no posts"
+              })]
+            })]
+          });
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+        path: ["/" + locale + "/page/:page_number"],
+        render: function render(props) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
+              title: "DevBlog.UZ",
+              setAlert: showAlert,
+              searchPosts: searchPosts,
+              subtitle: "A Blog By Murod Parmonov",
+              image: 'home-bg.jpg'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+              className: "container",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_ProgressBar__WEBPACK_IMPORTED_MODULE_6__.default, {
+                  loading: loading
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                  className: "container",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_About__WEBPACK_IMPORTED_MODULE_10__.default, {})
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Alert__WEBPACK_IMPORTED_MODULE_11__.default, {
+                    alert: alert
                   })
                 })]
-              });
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
-            exact: true,
-            path: "/post/:post_slug",
-            render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
-                  title: post.title,
-                  subtitle: post.description,
-                  image: post.image
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                  className: "container",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_Post__WEBPACK_IMPORTED_MODULE_12__.default, _objectSpread(_objectSpread({}, props), {}, {
-                      getPost: getPost,
-                      post: post,
-                      meta: meta,
-                      links: links
-                    }))
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row justify-content-center",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Posts__WEBPACK_IMPORTED_MODULE_9__.default, {
+                  meta: meta,
+                  posts: posts,
+                  params: props.match.params,
+                  getPosts: getPosts
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row justify-content-center",
+                children: posts.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_PostsPagination__WEBPACK_IMPORTED_MODULE_7__.default, {
+                  meta: meta,
+                  links: links
+                }) : "no posts"
+              })]
+            })]
+          });
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+        exact: true,
+        path: "/" + locale + "/user/:username",
+        render: function render(props) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
+              title: post.title,
+              subtitle: post.description,
+              image: post.image
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+              className: "container",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_User__WEBPACK_IMPORTED_MODULE_13__.default, _objectSpread(_objectSpread({}, props), {}, {
+                  getUser: getUser,
+                  user: user
+                }))
+              })
+            })]
+          });
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+        exact: true,
+        path: "/" + locale + "/about",
+        render: function render(props) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
+              title: "Murod Parmonov",
+              subtitle: "About @parmonov98",
+              image: 'about-bg.jpg'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+              className: "container",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_About__WEBPACK_IMPORTED_MODULE_10__.default, {})
+              })
+            })]
+          });
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+        exact: true,
+        path: "/" + locale + "/post/:post_slug",
+        render: function render(props) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
+              title: post.title,
+              subtitle: post.description,
+              image: post.image
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+              className: "container",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_Post__WEBPACK_IMPORTED_MODULE_12__.default, _objectSpread(_objectSpread({}, props), {}, {
+                  getPost: getPost,
+                  post: post,
+                  meta: meta,
+                  links: links
+                }))
+              })
+            })]
+          });
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+        exact: true,
+        path: "/" + locale + "/contact",
+        render: function render(props) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
+              title: "Contact @parmonov98",
+              subtitle: "Get in touch with Murod Parmonov",
+              image: 'contact-bg.jpg'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+              className: "container",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                  className: "col-md-12",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Alert__WEBPACK_IMPORTED_MODULE_11__.default, {
+                    alert: alert
                   })
-                })]
-              });
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
-            exact: true,
-            path: "/contact",
-            render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
-                  title: "Contact @parmonov98",
-                  subtitle: "Get in touch with Murod Parmonov",
-                  image: 'contact-bg.jpg'
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                  className: "container",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                      className: "col-md-12",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Alert__WEBPACK_IMPORTED_MODULE_11__.default, {
-                        alert: alert
-                      })
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_Contact__WEBPACK_IMPORTED_MODULE_14__.default, {
-                      sendMessage: sendMessage,
-                      showAlert: showAlert
-                    })
-                  })]
-                })]
-              });
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_18__.Route, {
-            render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
-                  title: "404 Page",
-                  subtitle: "Please, go to Home",
-                  image: '404-page.jpg'
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                  className: "container",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                      className: "col-md-12",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Alert__WEBPACK_IMPORTED_MODULE_11__.default, {
-                        alert: alert
-                      })
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                    className: "row",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_Page404__WEBPACK_IMPORTED_MODULE_15__.default, {})
-                  })]
-                })]
-              });
-            }
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Footer__WEBPACK_IMPORTED_MODULE_8__.default, {
-          socials: socials
-        })]
-      })
-    })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_Contact__WEBPACK_IMPORTED_MODULE_14__.default, {
+                  sendMessage: sendMessage,
+                  showAlert: showAlert
+                })
+              })]
+            })]
+          });
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_17__.Route, {
+        render: function render(props) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
+              title: "404 Page",
+              subtitle: "Please, go to Home",
+              image: '404-page.jpg'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+              className: "container",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                  className: "col-md-12",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Alert__WEBPACK_IMPORTED_MODULE_11__.default, {
+                    alert: alert
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_pages_Page404__WEBPACK_IMPORTED_MODULE_15__.default, {})
+              })]
+            })]
+          });
+        }
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_layouts_Footer__WEBPACK_IMPORTED_MODULE_8__.default, {
+      socials: socials
+    })]
   });
 };
 
@@ -2719,17 +2844,19 @@ var Header = function Header(_ref) {
       searchPosts = _ref.searchPosts,
       setAlert = _ref.setAlert;
   // let pageHeaderImage = images(`./${image}`);
-  var url = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLocation)();
-  var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__.CustomContext);
-  var activeLanguage = context.activeLanguage;
-  var ui = activeLanguage;
-  ui = context.texts[activeLanguage];
+  var url = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLocation)(); // console.log(url.pathname);
 
-  if (url.pathname == '/') {
+  var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__.CustomContext);
+  var activeLanguage = context.activeLanguage,
+      locale = context.locale;
+  var ui = locale;
+  ui = context.texts[locale];
+
+  if (url.pathname == '/' + locale + '/') {
     subtitle = ui.app_title;
   }
 
-  if (url.pathname == '/contact') {
+  if (url.pathname == '/' + locale + '/contact' || url.pathname == '/' + locale + '/contact/') {
     var page = ui.pages.find(function (item) {
       return item.page_name == 'contact';
     });
@@ -2737,7 +2864,7 @@ var Header = function Header(_ref) {
     subtitle = page.page_subtitle;
   }
 
-  if (url.pathname == '/about') {
+  if (url.pathname == '/' + locale + '/about' || url.pathname == '/' + locale + '/about/') {
     var _page = ui.pages.find(function (item) {
       return item.page_name == 'about';
     });
@@ -2803,6 +2930,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../contexts/CustomContext */ "./resources/js/contexts/CustomContext.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
@@ -2810,15 +2938,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var LanguageToggle = function LanguageToggle() {
+
+var LanguageSwitcher = function LanguageSwitcher() {
+  var url = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)();
   var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__.CustomContext);
-  var activeLanguage = context.activeLanguage,
-      languages = context.languages,
-      switchActiveLanguage = context.switchActiveLanguage;
-  var lang = activeLanguage;
-  lang = context.languages.find(function (item) {
-    return item.name == activeLanguage;
+  var locale = context.locale,
+      languages = context.languages;
+  var lang = context.languages.find(function (item) {
+    return item.code == locale;
   });
+
+  var changeLanguage = function changeLanguage(lang) {
+    var path = url.pathname;
+    path = path.replace(locale, lang);
+    window.location.href = path;
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "dropdown language_dropdown collapes",
     id: "languageDropdown",
@@ -2835,10 +2970,10 @@ var LanguageToggle = function LanguageToggle() {
       "aria-labelledby": "dropdownMenuButton",
       children: languages.map(function (item) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("a", {
-          onClick: function onClick() {
-            return switchActiveLanguage("".concat(item.name));
-          },
           "data-lang": item.name,
+          onClick: function onClick() {
+            return changeLanguage(item.code);
+          },
           className: "dropdown-item",
           href: "#",
           children: [item.flag, " ", item.title]
@@ -2848,7 +2983,7 @@ var LanguageToggle = function LanguageToggle() {
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LanguageToggle);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LanguageSwitcher);
 
 /***/ }),
 
@@ -2878,9 +3013,9 @@ __webpack_require__.r(__webpack_exports__);
 var Navbar = function Navbar(_ref) {
   var title = _ref.title;
   var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__.CustomContext);
-  var activeLanguage = context.activeLanguage;
-  var ui = activeLanguage;
-  ui = context.texts[activeLanguage];
+  var locale = context.locale;
+  var ui = locale;
+  ui = context.texts[locale];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
     className: "navbar navbar-expand-lg navbar-light fixed-top",
     id: "mainNav",
@@ -2888,7 +3023,7 @@ var Navbar = function Navbar(_ref) {
       className: "container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
         className: "navbar-brand",
-        href: "/",
+        href: "/" + locale + "/",
         children: title
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
         className: "navbar-toggler navbar-toggler-right",
@@ -2910,21 +3045,21 @@ var Navbar = function Navbar(_ref) {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
               className: "nav-link",
-              to: "/",
+              to: "/".concat(locale, "/"),
               children: ui.home
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
               className: "nav-link",
-              to: "/about",
+              to: "/".concat(locale, "/about"),
               children: ui.about
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
               className: "nav-link",
-              to: "/contact",
+              to: "/".concat(locale, "/contact"),
               children: ui.contact
             })
           })]
@@ -2967,14 +3102,15 @@ var PostItem = function PostItem(_ref) {
       author = _ref.author;
   var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__.CustomContext);
-  var activeLanguage = context.activeLanguage;
+  var activeLanguage = context.activeLanguage,
+      locale = context.locale;
   var ui = activeLanguage;
-  ui = context.texts[activeLanguage];
+  ui = context.texts[locale];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "post-preview",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-        to: "/post/".concat(slug),
+        to: "/".concat(locale, "/post/").concat(slug),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
           className: "post-title",
           children: title
@@ -2985,7 +3121,7 @@ var PostItem = function PostItem(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
         className: "post-meta",
         children: [ui.author, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-          to: "/user/".concat(author),
+          to: "/".concat(locale, "/user/").concat(author),
           children: [" ", author, " "]
         }), ",", ui.date, " ", monthNames[new Date().getMonth()], " ", new Date().getDay(), ", ", new Date().getFullYear()]
       })]
@@ -3042,8 +3178,6 @@ var Posts = function Posts(_ref) {
   var didMountRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
   var url = window.location.pathname.split('/').pop();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(page_number);
-
     if (parseInt(params.page_number) !== page_number) {
       setPageNumber(params.page_number);
       getPosts(parseInt(params.page_number));
@@ -3105,9 +3239,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var PostsPagination = function PostsPagination(props) {
   var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__.CustomContext);
-  var activeLanguage = context.activeLanguage;
+  var activeLanguage = context.activeLanguage,
+      locale = context.locale;
   var ui = activeLanguage;
-  ui = context.texts[activeLanguage];
+  ui = context.texts[locale];
   var links = props.links,
       meta = props.meta;
   return links != null && meta != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("nav", {
@@ -3118,7 +3253,7 @@ var PostsPagination = function PostsPagination(props) {
         className: "page-item ".concat(meta.current_page == 1 ? "disabled" : ''),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
           className: "page-link",
-          to: "/page/".concat(meta.current_page == 1 ? "" : meta.current_page - 1),
+          to: "/".concat(locale, "/page/").concat(meta.current_page == 1 ? "" : meta.current_page - 1),
           children: ui.prev_page_button
         })
       }, "prev"), function () {
@@ -3129,7 +3264,7 @@ var PostsPagination = function PostsPagination(props) {
             className: "page-item ".concat(meta.current_page == i ? 'active' : ''),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
               className: "page-link",
-              to: "/page/".concat(i),
+              to: "/".concat(locale, "/page/").concat(i),
               children: i
             })
           }, i));
@@ -3140,7 +3275,7 @@ var PostsPagination = function PostsPagination(props) {
         className: "page-item ".concat(meta.current_page == meta.last_page ? "disabled" : ''),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
           className: "page-link",
-          to: "/page/".concat(meta.current_page + 1),
+          to: "/".concat(locale, "/page/").concat(meta.current_page + 1),
           children: ui.next_page_button
         })
       }, "next")]
@@ -3217,9 +3352,10 @@ var Search = function Search(_ref) {
   var setAlert = _ref.setAlert,
       searchPosts = _ref.searchPosts;
   var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__.CustomContext);
-  var activeLanguage = context.activeLanguage;
+  var activeLanguage = context.activeLanguage,
+      locale = context.locale;
   var ui = activeLanguage;
-  ui = context.texts[activeLanguage];
+  ui = context.texts[locale];
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3295,14 +3431,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var About = function About() {
   var context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_1__.CustomContext);
-  console.log(context);
-  var activeLanguage = context.activeLanguage;
-  var ui = activeLanguage;
-  ui = context.texts[activeLanguage];
+  var activeLanguage = context.activeLanguage,
+      locale = context.locale;
+  var ui = locale;
+  ui = context.texts[locale];
   var page = ui.pages.find(function (item) {
     return item.page_name == 'about';
   });
-  console.log(page);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "col-lg-8 col-md-10 mx-auto",
     children: page.page_text
@@ -3357,12 +3492,14 @@ var Contact = function Contact(_ref) {
       sendMessage = _ref.sendMessage,
       clearSendMessageForm = _ref.clearSendMessageForm;
   var context = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_contexts_CustomContext__WEBPACK_IMPORTED_MODULE_2__.CustomContext);
-  var activeLanguage = context.activeLanguage;
-  var ui = activeLanguage;
-  ui = context.texts[activeLanguage];
-  var contact = ui.pages.find(function (item) {
+  var activeLanguage = context.activeLanguage,
+      locale = context.locale;
+  var ui = locale;
+  ui = context.texts[locale]; // console.log(ui);
+
+  var page = ui.pages.find(function (item) {
     return item.page_name == 'contact';
-  });
+  }); // console.log(page);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3532,7 +3669,7 @@ var Contact = function Contact(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "col-lg-8 col-md-10 mx-auto",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-      children: contact.page_text
+      children: page.page_text
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
       name: "sentMessage",
       id: "contactForm",
@@ -3549,7 +3686,7 @@ var Contact = function Contact(_ref) {
             onChange: onChangeName,
             value: name,
             className: "form-control",
-            placeholder: contact.name_placeholder,
+            placeholder: page.name_placeholder,
             id: "name",
             required: "",
             "data-validation-required-message": "Please enter your name."
@@ -3568,7 +3705,7 @@ var Contact = function Contact(_ref) {
             onChange: onChangeEmail,
             value: email,
             className: "form-control",
-            placeholder: contact.email_placeholder,
+            placeholder: page.email_placeholder,
             id: "email",
             required: "",
             "data-validation-required-message": "Please enter your email address."
@@ -3587,7 +3724,7 @@ var Contact = function Contact(_ref) {
             value: phone,
             onChange: onChangePhone,
             className: "form-control",
-            placeholder: contact.phone_placeholder,
+            placeholder: page.phone_placeholder,
             id: "phone",
             required: "",
             "data-validation-required-message": "Please enter your phone number."
@@ -3606,7 +3743,7 @@ var Contact = function Contact(_ref) {
             value: text,
             onChange: onChangeText,
             className: "form-control",
-            placeholder: contact.message_placeholder,
+            placeholder: page.message_placeholder,
             id: "text",
             required: "",
             "data-validation-required-message": "Please enter a message."
@@ -3620,7 +3757,7 @@ var Contact = function Contact(_ref) {
         type: "submit",
         className: "btn btn-primary",
         id: "sendMessageButton",
-        children: contact.send_button
+        children: page.send_button
       })]
     })]
   });
@@ -3685,8 +3822,7 @@ var Post = function Post(_ref) {
       post = _ref.post;
 
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useParams)(),
-      post_slug = _useParams.post_slug; // console.log(post_id);
-
+      post_slug = _useParams.post_slug;
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     return getPost(post_slug);
@@ -3859,16 +3995,12 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
 
   var _super = _createSuper(CustomContextProvider);
 
-  function CustomContextProvider() {
+  function CustomContextProvider(props) {
     var _this;
 
     _classCallCheck(this, CustomContextProvider);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
+    _this = _super.call(this, props);
     _this.state = {
       isLightTheme: true,
       light: {
@@ -3881,7 +4013,7 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
         ui: '#333',
         bg: '#555'
       },
-      activeLanguage: "uzbek",
+      locale: "uz",
       languages: [{
         name: "uzbek",
         title: "O'zbek",
@@ -3899,7 +4031,7 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
         flag: "🇺🇸"
       }],
       texts: {
-        uzbek: {
+        uz: {
           app_title: "Dasturchilar uchun dasturchilardan blog",
           home: "bosh sahifa",
           about: 'proyekt haqida',
@@ -3930,7 +4062,7 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
           // }
 
         },
-        russian: {
+        ru: {
           app_title: "Блог для разработчиков от разработчиков",
           home: "главная",
           about: 'о проект',
@@ -3959,7 +4091,7 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
             page_text: "Этот проект создан для разработчиков от разработчиков, чтобы ускорить начать блоггинг!"
           }]
         },
-        english: {
+        en: {
           app_title: "A Blog for Developers from Developers",
           home: "home",
           about: 'about',
@@ -3988,28 +4120,45 @@ var CustomContextProvider = /*#__PURE__*/function (_Component) {
             page_text: "The project was created for developers by developrs to make easy start blogging!"
           }]
         }
-      }
+      },
+      setLocale: function setLocale() {}
     };
 
-    _this.switchActiveLanguage = function () {
-      var lang = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'uzbek';
-
-      if (_this.state.activeLanguage !== lang) {
+    _this.setLanguage = function (lang) {
+      if (_this.state.locale !== lang) {
         _this.setState({
-          activeLanguage: lang
+          locale: lang
         });
+
+        window.localStorage.setItem('locale', lang);
       }
     };
 
+    _this.state.locale = props.locale;
     return _this;
   }
 
   _createClass(CustomContextProvider, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.locale == 'uz' || this.props.locale == 'ru' || this.props.locale == 'en') {
+        this.setLanguage(this.props.locale);
+      } else {
+        var localStorageLang = window.localStorage.getItem('locale');
+
+        if (localStorageLang == 'uz' || localStorageLang == 'ru' || localStorageLang == 'en') {
+          this.setLanguage(localStorageLang);
+        } else {
+          this.setLanguage('uz');
+        }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(CustomContext.Provider, {
-        value: _objectSpread(_objectSpread({}, this.state), {}, {
-          switchActiveLanguage: this.switchActiveLanguage
+        value: _objectSpread(_objectSpread(_objectSpread({}, this.state), this.props), {}, {
+          setLanguage: this.setLanguage
         }),
         children: this.props.children
       });
