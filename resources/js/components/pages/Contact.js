@@ -1,19 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { CustomContext } from './../../contexts/CustomContext';
 
 const Contact = ({ showAlert, sendMessage, clearSendMessageForm }) => {
 
     const context = useContext(CustomContext);
-    const { activeLanguage, locale } = context;
+    const { locale } = context;
 
     let ui = locale;
     ui = context.texts[locale];
-
-    // console.log(ui);
-
     const page = ui.pages.find((item) => item.page_name == 'contact');
 
-    // console.log(page);
+    useEffect(() => {
+        document.title = ui.app_name + ' - ' + page.page_title;
+    }, [])
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

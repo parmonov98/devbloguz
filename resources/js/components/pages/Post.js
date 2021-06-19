@@ -4,9 +4,19 @@ import { useParams } from 'react-router-dom';
 const Post = ({ getPost, post }) => {
 
     const { post_slug } = useParams();
-    useEffect(() => getPost(post_slug), []);
+    const context = useContext(CustomContext);
+    const { locale } = context;
 
-    // console.log(post);
+    let ui = locale;
+    ui = context.texts[locale];
+    const page = ui.pages.find((item) => item.page_name == 'post');
+
+
+    useEffect(() => {
+        getPost(post_slug);
+        document.title = ui.app_name + ' - ' + page.page_title;
+    }, [])
+
     return (
         <article>
             <div className="container">

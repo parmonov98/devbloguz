@@ -39,6 +39,7 @@ class CustomContextProvider extends Component {
         ],
         texts: {
             uz: {
+                app_name: "DevBlog.UZ",
                 app_title: "Dasturchilar uchun dasturchilardan blog",
                 home: "bosh sahifa",
                 about: 'proyekt haqida',
@@ -69,10 +70,9 @@ class CustomContextProvider extends Component {
                         page_text: "Bu proyekt dasturchilar uchun dasturchilar tomonidan yaratilgan va bu platforma dasturchilarning bloggingni boshlashini tezlashtirish uchun xizmat qiladi!",
                     }
                 ]
-                // contact: {
-                // }
             },
             ru: {
+                app_name: "DevBlog.UZ",
                 app_title: "Блог для разработчиков от разработчиков",
                 home: "главная",
                 about: 'о проект',
@@ -105,6 +105,7 @@ class CustomContextProvider extends Component {
                 ]
             },
             en: {
+                app_name: "DevBlog.UZ",
                 app_title: "A Blog for Developers from Developers",
                 home: "home",
                 about: 'about',
