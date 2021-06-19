@@ -24,7 +24,7 @@ const App = (props) => {
     const context = useContext(CustomContext);
     const url = useLocation();
 
-    const { locale, setLanguage } = context;
+    const { locale } = context;
 
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
