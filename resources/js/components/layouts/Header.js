@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Search from '../layouts/Search';
+import { CustomContext } from '../../contexts/CustomContext';
+
 // import BackgroundImage from '../../../public/assets/home-bg.jpg';
 // const images = require.context("../../../public/assets", true);
 
@@ -9,8 +12,30 @@ import Search from '../layouts/Search';
 const Header = ({ image, title, subtitle, searchPosts, setAlert }) => {
     // let pageHeaderImage = images(`./${image}`);
 
-    //   console.log(111);
-    //   console.log(searchPosts);
+    const url = useLocation();
+
+    // console.log(url.pathname);
+
+    const context = useContext(CustomContext);
+    const { activeLanguage, locale } = context;
+
+
+    let ui = locale;
+    ui = context.texts[locale];
+
+    if (url.pathname == '/' + locale + '/') {
+        subtitle = ui.app_title;
+    }
+    if (url.pathname == '/' + locale + '/contact' || url.pathname == '/' + locale + '/contact/') {
+        const page = ui.pages.find((item) => item.page_name == 'contact');
+        title = page.page_title;
+        subtitle = page.page_subtitle;
+    }
+    if (url.pathname == '/' + locale + '/about' || url.pathname == '/' + locale + '/about/') {
+        const page = ui.pages.find((item) => item.page_name == 'about');
+        title = page.page_title;
+        subtitle = page.page_subtitle;
+    }
 
     return (
         <header className="masthead" style={{ backgroundImage: `url(/assets/${image})` }}>

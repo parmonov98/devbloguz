@@ -54,6 +54,19 @@ class UserController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getByUsername($username)
+    {
+        // dd($username);
+        $user = User::with('posts')->firstWhere('username', $username);
+        return new UserResource($user);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
